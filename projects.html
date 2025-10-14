@@ -46,7 +46,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="p-5">
                                             <h2 class="fw-bolder">Obsidian - Personal Knowledge Base</h2>
-                                            <p>
+                                            <p class="text-justify">
                                                 Created a personal knowledge management workflow for various courseworks. The CANVAS in html has quite a few bugs but if required the raw files can be shared upon request.<br>
                                                 <a href="Obsidian/cell-membrane.html" target="_blank">Cell Membrane</a>
                                             </p>
@@ -61,7 +61,7 @@
                                     <div class="d-flex align-items-center">
                                         <div class="p-5">
                                             <h2 class="fw-bolder">Camphene-Conjugated ZnO Nanoparticles</h2>
-                                            <p>
+                                            <p class="text-justify">
                                                 Investigated the properties and effects of camphene conjugated zinc oxide nanoparticles on Zebrafish larvae. This in-vivo study included analysis of developmental toxicity, neurotoxicity via locomotory parameters, ROS enhancement, and lipid peroxidation levels.
                                                 Published in <a href="https://link.springer.com/article/10.1007/s12668-024-01561-3" target="_blank">BioNanoScience</a>
                                             </p>
@@ -72,11 +72,17 @@
                             <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                                 <div class="card-body p-0">
                                     <div class="d-flex align-items-center">
-                                        <div class="p-5">
+                                        <div class="p-5 flex-grow-1">
                                             <h2 class="fw-bolder">Ammo Mist - IoT Ammonia Sensor</h2>
-                                            <p>Developed a non-electrode-based module for detecting dissolved ammonia in aquariums. An IoT module transmits data to connected devices for remote monitoring. This invention received an institutional patent.</p>
+                                            <p class="text-justify">
+                                                Developed a non-electrode-based module for detecting dissolved ammonia in aquariums under the guidance of 
+                                                <a href="https://www.linkedin.com/in/dr-i-praveen-kumar-06048118/" target="_blank">Dr. Praveen</a>. 
+                                                An ESP32 module was used to transmit data to connected devices for remote monitoring. Designed a custom 3D printable housing for the sensor and module.
+                                            </p>
                                         </div>
-                                        <img class="img-fluid d-none d-md-block" src="assets/project_ammonia_sensor.jpg" alt="IoT sensor module" />
+                                        <div class="flex-shrink-0" style="width:220px; height:180px; display:flex; align-items:center; justify-content:center;">
+                                            <img class="img-fluid rounded" src="assets/ammomist.png" alt="IoT sensor module" style="max-width:100%; max-height:100%; object-fit:contain;" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -85,9 +91,12 @@
                                     <div class="d-flex align-items-center">
                                         <div class="p-5">
                                             <h2 class="fw-bolder">Clin Mist - Natural Surface Disinfectant</h2>
-                                            <p>Formulated a novel surface disinfectant using the antimicrobial properties of terpinen-4-ol extracted from Green tea, creating a natural alternative to sodium hypochlorite. This product also received an institutional patent.</p>
+                                            <p class="text-justify">
+                                                Along with a colleague 
+                                                <a href="https://www.linkedin.com/in/susikaran07/" target="_blank">Susikaran</a>, 
+                                                we formulated a novel surface disinfectant using the antimicrobial properties of terpinen-4-ol extracted from Green tea, creating a natural alternative to sodium hypochlorite. This product also received an institutional patent.
+                                            </p>
                                         </div>
-                                        <img class="img-fluid d-none d-md-block" src="assets/project_disinfectant.jpg" alt="Natural disinfectant spray" />
                                     </div>
                                 </div>
                             </div>
@@ -108,3 +117,8 @@
         <script src="js/theme.js"></script>
     </body>
 </html>
+<style>
+    .text-justify {
+        text-align: justify;
+    }
+</style>
