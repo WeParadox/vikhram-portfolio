@@ -13,70 +13,103 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <style>
-            /* Keyframe animation for fading in */
+            /* --- General Animation Styles --- */
             @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
             }
-
-            /* Class to apply the animation */
-            .fade-in-on-load {
-                animation: fadeIn 1s ease-in-out forwards;
-            }
-
-            /* Style for hidden elements to be revealed */
+            .fade-in-on-load { animation: fadeIn 1s ease-in-out forwards; }
             .reveal-on-scroll {
                 opacity: 0;
                 transform: translateY(50px);
                 transition: opacity 0.8s ease-out, transform 0.6s ease-out;
             }
-
-            /* Style for when the element becomes visible */
-            .reveal-on-scroll.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
             
-            /* Hover effect for buttons */
-            .btn {
-                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            /* --- Interactive Element Styles --- */
+            .btn { transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+            .btn:hover { transform: translateY(-4px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+            .d-flex.justify-content-center .text-gradient { transition: transform 0.2s ease-in-out; }
+            .d-flex.justify-content-center .text-gradient:hover { transform: scale(1.2); }
+
+            /* --- Animated Background Styles --- */
+            #hero-background-svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1; /* Ensure it stays in the background */
+                opacity: 0.1; /* Watermark effect */
+                filter: grayscale(100%); /* Desaturate for watermark */
             }
 
-            .btn:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            /* mRNA movement */
+            @keyframes moveMrna {
+                0% { transform: translateX(-100px); }
+                100% { transform: translateX(100px); }
+            }
+            .mrna-strand {
+                animation: moveMrna 15s linear infinite alternate;
             }
 
-            /* Hover effect for social media icons */
-            .d-flex.justify-content-center .text-gradient {
-                transition: transform 0.2s ease-in-out;
+            /* Ribosome movement */
+            @keyframes moveRibosome {
+                0% { transform: translateX(0px); }
+                100% { transform: translateX(150px); }
+            }
+            #ribosome-bg {
+                animation: moveRibosome 8s linear infinite alternate;
             }
 
-            .d-flex.justify-content-center .text-gradient:hover {
-                transform: scale(1.2);
+            /* tRNA animation */
+            @keyframes trnaAnimate1 {
+                0%, 100% { transform: translate(50px, -20px) scale(0.8); opacity: 0; }
+                20% { opacity: 1; }
+                50% { transform: translate(70px, 0px) scale(1); opacity: 1; }
+                80% { opacity: 0; }
+            }
+            #trna-bg-1 {
+                animation: trnaAnimate1 8s ease-in-out infinite;
+            }
+            @keyframes trnaAnimate2 {
+                0%, 100% { transform: translate(150px, -20px) scale(0.8); opacity: 0; }
+                40% { opacity: 1; }
+                70% { transform: translate(170px, 0px) scale(1); opacity: 1; }
+                90% { opacity: 0; }
+            }
+            #trna-bg-2 {
+                animation: trnaAnimate2 8s ease-in-out infinite;
+                animation-delay: 2s; /* Stagger animation */
+            }
+            @keyframes trnaAnimate3 {
+                0%, 100% { transform: translate(250px, -20px) scale(0.8); opacity: 0; }
+                60% { opacity: 1; }
+                90% { transform: translate(270px, 0px) scale(1); opacity: 1; }
+                100% { opacity: 0; }
+            }
+            #trna-bg-3 {
+                animation: trnaAnimate3 8s ease-in-out infinite;
+                animation-delay: 4s; /* Stagger animation */
             }
         </style>
         <script>
             // Change tab title and icon when not active/active
-            const originalTitle = document.title;
-            const inactiveTitle = "WeParadox";
-            const favicon = document.getElementById("favicon");
-            const activeIcon = "assets/WP.ico"; // icon when active
-            const inactiveIcon = "assets/VR.ico"; // icon when inactive (replace with your file)
+            document.addEventListener('DOMContentLoaded', () => {
+                const originalTitle = document.title;
+                const inactiveTitle = "WeParadox";
+                const favicon = document.getElementById("favicon");
+                const activeIcon = "assets/WP.ico";
+                const inactiveIcon = "assets/VR.ico";
 
-            window.addEventListener("blur", () => {
-                document.title = inactiveTitle;
-                favicon.href = inactiveIcon;
-            });
-            window.addEventListener("focus", () => {
-                document.title = originalTitle;
-                favicon.href = activeIcon;
+                window.addEventListener("blur", () => {
+                    document.title = inactiveTitle;
+                    if (favicon) favicon.href = inactiveIcon;
+                });
+                window.addEventListener("focus", () => {
+                    document.title = originalTitle;
+                    if (favicon) favicon.href = activeIcon;
+                });
             });
         </script>
     </head>
@@ -102,15 +135,57 @@
                     </div>
                 </div>
             </nav>
-            <header class="py-5">
+            <header class="py-5 position-relative overflow-hidden">
+                <svg id="hero-background-svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+                    <path class="mrna-strand" d="M0 200 C 200 180, 400 220, 800 200" fill="none" stroke="#ccc" stroke-width="5" />
+                    <circle class="mrna-strand" cx="50" cy="200" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="100" cy="190" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="150" cy="210" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="200" cy="195" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="250" cy="205" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="300" cy="190" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="350" cy="210" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="400" cy="195" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="450" cy="205" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="500" cy="190" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="550" cy="210" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="600" cy="195" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="650" cy="205" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="700" cy="190" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="750" cy="210" r="10" fill="#bbb" />
+                    <circle class="mrna-strand" cx="800" cy="195" r="10" fill="#bbb" />
+                   
+                    <g id="ribosome-bg">
+                        <path d="M50 150 Q 80 120, 110 150 Q 140 180, 110 210 Q 80 240, 50 210 Q 20 180, 50 150 Z" fill="#999" />
+                        <path d="M60 180 Q 80 160, 100 180 Q 120 200, 100 220 Q 80 240, 60 220 Q 40 200, 60 180 Z" fill="#888" />
+                    </g>
+                    
+                    <g id="trna-bg-1" transform="translate(0,0)">
+                        <path d="M10 0 Q 30 -20, 50 0 L 45 10 Q 30 20, 15 10 Z" fill="#aaa" stroke="#999" stroke-width="2" />
+                        <circle cx="30" cy="20" r="8" fill="#bbb" />
+                    </g>
+                    
+                    <g id="trna-bg-2" transform="translate(0,0)">
+                        <path d="M10 0 Q 30 -20, 50 0 L 45 10 Q 30 20, 15 10 Z" fill="#aaa" stroke="#999" stroke-width="2" />
+                        <circle cx="30" cy="20" r="8" fill="#bbb" />
+                    </g>
+                    
+                    <g id="trna-bg-3" transform="translate(0,0)">
+                        <path d="M10 0 Q 30 -20, 50 0 L 45 10 Q 30 20, 15 10 Z" fill="#aaa" stroke="#999" stroke-width="2" />
+                        <circle cx="30" cy="20" r="8" fill="#bbb" />
+                    </g>
+                </svg>
+
                 <div class="container px-5 pb-5">
-                    <div class="row gx-5 align-items-center fade-in-on-load">
-                        <div class="col-xxl-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-xxl-12">
                             <div class="text-center text-xxl-start">
-                                <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase">Interdisciplinary &middot; Researcher &middot; Problem Solver</div></div>
-                                <div class="fs-3 fw-light text-muted">A passionate researcher with an interdisciplinary skill set involving Immunobiology, Nanotechnology, Microfluidics...</div>
-                                <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Bridging the gap between Biology and Materials Science</span></h1>
-                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+                                <div class="badge bg-gradient-primary-to-secondary text-white mb-4 fade-in-on-load"><div class="text-uppercase">Interdisciplinary &middot; Researcher &middot; Problem Solver</div></div>
+                                <div class="fs-3 fw-light text-muted fade-in-on-load" style="animation-delay: 0.2s;">A passionate researcher with an interdisciplinary skill set involving Immunobiology, Nanotechnology, Microfluidics...</div>
+                                
+                                <h1 class="display-3 fw-bolder mb-5 fade-in-on-load" style="animation-delay: 0.4s;"><span class="text-gradient d-inline">Bridging the gap between Biology and Materials Science</span></h1>
+                                
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3 fade-in-on-load" style="animation-delay: 0.6s;">
                                     <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="resume.html">Resume</a>
                                     <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="projects.html">Projects</a>
                                 </div>
@@ -169,22 +244,22 @@
         <script src="js/theme.js"></script>
         <script>
             // Reveal elements on scroll
-            const revealElements = document.querySelectorAll(".reveal-on-scroll");
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                        // Optional: stop observing once it's visible
-                        observer.unobserve(entry.target); 
-                    }
+            document.addEventListener('DOMContentLoaded', () => {
+                const revealElements = document.querySelectorAll(".reveal-on-scroll");
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            observer.unobserve(entry.target); 
+                        }
+                    });
+                }, {
+                    threshold: 0.1
                 });
-            }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            });
 
-            revealElements.forEach(element => {
-                observer.observe(element);
+                revealElements.forEach(element => {
+                    observer.observe(element);
+                });
             });
         </script>
     </body>
