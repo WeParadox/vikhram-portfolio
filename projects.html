@@ -22,17 +22,14 @@
                 from { opacity: 0; transform: translateY(20px); }
                 to { opacity: 1; transform: translateY(0); }
             }
-
             .fade-in-on-load {
                 animation: fadeIn 1s ease-in-out forwards;
             }
-
             .reveal-on-scroll {
                 opacity: 0;
                 transform: translateY(50px);
                 transition: opacity 0.8s ease-out, transform 0.6s ease-out;
             }
-
             .reveal-on-scroll.visible {
                 opacity: 1;
                 transform: translateY(0);
@@ -43,31 +40,56 @@
                 background-color: #262b32;
                 border-color: #4d545e;
             }
-
             .dark-mode .accordion-button {
                 background-color: #343a40;
                 color: #f8f9fa;
             }
-
             .dark-mode .accordion-button:not(.collapsed) {
                 background-color: #0d6efd;
                 color: white;
             }
-
             .dark-mode .accordion-button::after {
                 filter: invert(1) grayscale(100%);
             }
-
             .dark-mode .accordion-button:not(.collapsed)::after {
                 filter: none;
             }
-
             .dark-mode .accordion-body {
                 color: #adb5bd;
             }
             .dark-mode .accordion-body a {
                 color: #6ea8fe;
             }
+
+            /* --- Subtle Animated Background --- */
+            .animated-bg-section {
+                position: relative;
+                overflow: hidden; /* Keeps shapes within the section */
+            }
+            #project-bg-svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 0;
+                opacity: 0.06;
+            }
+            .bg-shape {
+                stroke: #6c757d;
+                stroke-width: 2;
+                fill: none;
+                animation: float infinite ease-in-out;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px) translateX(0px); }
+                50% { transform: translateY(-25px) translateX(15px); }
+                100% { transform: translateY(0px) translateX(0px); }
+            }
+            #shape1 { animation-duration: 28s; }
+            #shape2 { animation-duration: 35s; animation-delay: -5s; transform: scale(0.8); }
+            #shape3 { animation-duration: 22s; animation-delay: -10s; transform: scale(1.2); }
+            #shape4 { animation-duration: 40s; animation-delay: -3s; }
         </style>
     </head>
     <body class="d-flex flex-column h-100">
@@ -90,8 +112,18 @@
                     </div>
                 </div>
             </nav>
-            <section class="py-5">
-                <div class="container px-5 mb-5">
+            <section class="py-5 animated-bg-section">
+                <svg id="project-bg-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                        <path id="hexagon" d="M25.98 5 L5 25 L5 65 L25.98 85 L46.96 65 L46.96 25 Z" />
+                    </defs>
+                    <use id="shape1" class="bg-shape" href="#hexagon" x="100" y="150" />
+                    <circle id="shape2" class="bg-shape" cx="650" cy="100" r="40" />
+                    <use id="shape3" class="bg-shape" href="#hexagon" x="700" y="450" />
+                    <circle id="shape4" class="bg-shape" cx="150" cy="500" r="50" />
+                </svg>
+
+                <div class="container px-5 mb-5" style="position: relative; z-index: 1;">
                     <div class="text-center mb-5 fade-in-on-load">
                         <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
                     </div>
@@ -303,9 +335,7 @@
                                         <div class="p-5">
                                             <h2 class="fw-bolder">Clin Mist - Natural Surface Disinfectant</h2>
                                             <p class="text-justify">
-                                                Along with a colleague 
-                                                <a href="https://www.linkedin.com/in/susikaran07/" target="_blank">Susikaran</a>, 
-                                                we formulated a novel surface disinfectant using the antimicrobial properties of terpinen-4-ol extracted from Green tea, creating a natural alternative to sodium hypochlorite. This product also received an institutional patent.
+                                                Along with a colleague Susikaran, we formulated a novel surface disinfectant using the antimicrobial properties of terpinen-4-ol extracted from Green tea, creating a natural alternative to sodium hypochlorite. This product was developed as part of the YUKTI Innovation challenge and also received an Institutional patent.
                                             </p>
                                         </div>
                                     </div>
