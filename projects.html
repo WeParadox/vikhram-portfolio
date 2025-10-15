@@ -12,6 +12,63 @@
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            .text-justify {
+                text-align: justify;
+            }
+
+            /* --- Animations --- */
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            .fade-in-on-load {
+                animation: fadeIn 1s ease-in-out forwards;
+            }
+
+            .reveal-on-scroll {
+                opacity: 0;
+                transform: translateY(50px);
+                transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+            }
+
+            .reveal-on-scroll.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* --- Dark Mode Accordion Styles --- */
+            .dark-mode .accordion-item {
+                background-color: #262b32;
+                border-color: #4d545e;
+            }
+
+            .dark-mode .accordion-button {
+                background-color: #343a40;
+                color: #f8f9fa;
+            }
+
+            .dark-mode .accordion-button:not(.collapsed) {
+                background-color: #0d6efd;
+                color: white;
+            }
+
+            .dark-mode .accordion-button::after {
+                filter: invert(1) grayscale(100%);
+            }
+
+            .dark-mode .accordion-button:not(.collapsed)::after {
+                filter: none;
+            }
+
+            .dark-mode .accordion-body {
+                color: #adb5bd;
+            }
+            .dark-mode .accordion-body a {
+                color: #6ea8fe;
+            }
+        </style>
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
@@ -35,13 +92,13 @@
             </nav>
             <section class="py-5">
                 <div class="container px-5 mb-5">
-                    <div class="text-center mb-5">
+                    <div class="text-center mb-5 fade-in-on-load">
                         <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8">
                             
-                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5 reveal-on-scroll">
                                 <div class="card-body p-0">
                                     <div class="d-flex align-items-center">
                                         <div class="p-5 w-100">
@@ -210,7 +267,7 @@
                                 </div>
                             </div>
                             
-                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5 reveal-on-scroll">
                                 <div class="card-body p-0">
                                     <div class="d-flex align-items-center">
                                         <div class="p-5">
@@ -223,7 +280,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5 reveal-on-scroll">
                                 <div class="card-body p-0">
                                     <div class="d-flex align-items-center">
                                         <div class="p-5 flex-grow-1">
@@ -234,13 +291,13 @@
                                                 An ESP32 module was used to transmit data to connected devices for remote monitoring. Designed a custom 3D printable housing for the sensor and module.
                                             </p>
                                         </div>
-                                        <div class="flex-shrink-0" style="width:220px; height:180px; display:flex; align-items:center; justify-content:center;">
+                                        <div class="flex-shrink-0" style="width:220px; height:180px; display:flex; align-items-center; justify-content:center;">
                                             <img class="img-fluid rounded" src="assets/ammomist.png" alt="IoT sensor module" style="max-width:100%; max-height:100%; object-fit:contain;" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card overflow-hidden shadow rounded-4 border-0">
+                            <div class="card overflow-hidden shadow rounded-4 border-0 reveal-on-scroll">
                                 <div class="card-body p-0">
                                     <div class="d-flex align-items-center">
                                         <div class="p-5">
@@ -269,10 +326,24 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
         <script src="js/theme.js"></script>
+        <script>
+            // Reveal elements on scroll
+            const revealElements = document.querySelectorAll(".reveal-on-scroll");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                threshold: 0.1 
+            });
+
+            revealElements.forEach(element => {
+                observer.observe(element);
+            });
+        </script>
     </body>
 </html>
-<style>
-    .text-justify {
-        text-align: justify;
-    }
-</style>
