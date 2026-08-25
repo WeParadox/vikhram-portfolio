@@ -5,6 +5,15 @@ import Footer from '../components/Footer.astro';
 
 const projects = [
   {
+    title: 'PathSeq_AMR',
+    description: 'Pathogen identification & antimicrobial resistance detection for clinical metagenomic specimens. Takes Illumina paired-end FASTQ files, identifies 30 target pathogens, and detects AMR genes via KMA against ResFinder and CARD databases.',
+    tags: ['Python', 'Bowtie2', 'KMA', 'FastAPI', 'Docker'],
+    category: 'Bioinformatics',
+    flag: true,
+    github: 'https://github.com/WeParadox/PathSeq_AMR',
+    features: ['30 target organisms', 'ResFinder + CARD', 'Clinical PDF reports', 'Interactive dashboard', 'Docker support'],
+  },
+  {
     title: 'PhD: Metagenomic cfDNA for Sepsis Detection in Liver Transplant Recipients',
     description: 'ANRF-funded project at ASNSMM under Dr. Lalitha Biswas. Evaluating the Clinical Utility of Metagenomic Cell-Free DNA Sequencing for Early and Accurate Sepsis Detection in Liver Transplant Recipients. Developing clinical metagenomic pipelines for early sepsis detection using cfDNA from liver transplant recipients.',
     tags: ['cfDNA', 'Metagenomics', 'KMA', 'ResFinder', 'CARD', 'Liver Transplant', 'Clinical Genomics', 'ANRF'],
@@ -26,15 +35,6 @@ const projects = [
     category: 'Research',
     badge: 'Completed',
     features: ['PBAE synthesis & optimization', 'Core-shell nanoparticle design', 'GFP-transfection studies', 'In vitro assays', 'Manuscript in preparation'],
-  },
-  {
-    title: 'PathSeq_AMR',
-    description: 'Pathogen identification & antimicrobial resistance detection for clinical metagenomic specimens. Takes Illumina paired-end FASTQ files, identifies 30 target pathogens, and detects AMR genes via KMA against ResFinder and CARD databases.',
-    tags: ['Python', 'Bowtie2', 'KMA', 'FastAPI', 'Docker'],
-    category: 'Bioinformatics',
-    flag: true,
-    github: 'https://github.com/WeParadox/PathSeq_AMR',
-    features: ['30 target organisms', 'ResFinder + CARD', 'Clinical PDF reports', 'Interactive dashboard', 'Docker support'],
   },
   {
     title: 'Bachelor\'s Thesis',
@@ -151,88 +151,6 @@ const categories = ['All', 'Research', 'Bioinformatics', 'Hardware / IoT', 'Lab 
         ))}
       </div>
 
-      <!-- Featured Project: PhD Project -->
-      <div class="mb-12 reveal project-card" data-category="Research">
-        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-500/10 via-white to-primary/10 dark:from-purple-500/20 dark:via-dark-card dark:to-primary/20 border border-purple-500/20 dark:border-purple-500/30 p-8 md:p-10">
-          <div class="absolute top-6 right-6">
-            <span class="px-3 py-1.5 rounded-full bg-purple-500 text-white text-xs font-bold uppercase tracking-wider">ANRF Funded</span>
-          </div>
-          <div class="flex flex-col md:flex-row gap-8">
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-4">
-                <span class="px-3 py-1 rounded-lg bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-bold">{projects[0].category}</span>
-              </div>
-              <h2 class="text-3xl font-extrabold mb-3">{projects[0].title}</h2>
-              <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{projects[0].description}</p>
-              <div class="grid grid-cols-2 gap-2 mb-6">
-                {projects[0].features.map(f => (
-                  <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                    <i class="bi bi-check-circle-fill text-purple-500 text-xs"></i>
-                    {f}
-                  </div>
-                ))}
-              </div>
-              <div class="flex flex-wrap gap-2 mb-6">
-                {projects[0].tags.map(tag => (
-                  <span class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-dark-bg text-xs font-medium text-gray-600 dark:text-gray-400">{tag}</span>
-                ))}
-              </div>
-            </div>
-            <div class="md:w-72 shrink-0 flex items-center justify-center">
-              <div class="w-full aspect-square rounded-2xl bg-gradient-to-br from-purple-500/20 to-primary/20 dark:from-purple-500/30 dark:to-primary/30 flex flex-col items-center justify-center p-6 text-center">
-                <i class="bi bi-dna text-5xl text-purple-500 mb-3"></i>
-                <div class="text-2xl font-extrabold text-purple-500">cfDNA</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">Sequencing</div>
-                <div class="w-full h-px bg-gray-200 dark:bg-dark-border my-3"></div>
-                <div class="text-2xl font-extrabold text-primary dark:text-primary-light">Sepsis</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">Detection</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Featured Project: Master's Thesis -->
-      <div class="mb-12 reveal project-card" data-category="Research">
-        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-500/10 via-white to-primary/10 dark:from-purple-500/20 dark:via-dark-card dark:to-primary/20 border border-purple-500/20 dark:border-purple-500/30 p-8 md:p-10">
-          <div class="absolute top-6 right-6">
-            <span class="px-3 py-1.5 rounded-full bg-green-500 text-white text-xs font-bold uppercase tracking-wider">Completed</span>
-          </div>
-          <div class="flex flex-col md:flex-row gap-8">
-            <div class="flex-1">
-              <div class="flex items-center gap-3 mb-4">
-                <span class="px-3 py-1 rounded-lg bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-bold">{projects[1].category}</span>
-              </div>
-              <h2 class="text-3xl font-extrabold mb-3">{projects[1].title}</h2>
-              <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{projects[1].description}</p>
-              <div class="grid grid-cols-2 gap-2 mb-6">
-                {projects[1].features.map(f => (
-                  <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                    <i class="bi bi-check-circle-fill text-purple-500 text-xs"></i>
-                    {f}
-                  </div>
-                ))}
-              </div>
-              <div class="flex flex-wrap gap-2 mb-6">
-                {projects[1].tags.map(tag => (
-                  <span class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-dark-bg text-xs font-medium text-gray-600 dark:text-gray-400">{tag}</span>
-                ))}
-              </div>
-            </div>
-            <div class="md:w-64 shrink-0 flex items-center justify-center">
-              <div class="w-full aspect-square rounded-2xl bg-gradient-to-br from-purple-500/20 to-primary/20 dark:from-purple-500/30 dark:to-primary/30 flex flex-col items-center justify-center p-6 text-center">
-                <i class="bi bi-capsule text-5xl text-purple-500 mb-3"></i>
-                <div class="text-xl font-extrabold">PBAE</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">Core-Shell</div>
-                <div class="w-full h-px bg-gray-200 dark:bg-dark-border my-3"></div>
-                <div class="text-xl font-extrabold text-primary dark:text-primary-light">Gene</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">Delivery</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Featured Project: PathSeq_AMR -->
       <div class="mb-12 reveal project-card" data-category="Bioinformatics">
         <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/10 via-white to-accent/10 dark:from-primary/20 dark:via-dark-card dark:to-accent/20 border border-primary/20 dark:border-primary/30 p-8 md:p-10">
@@ -242,12 +160,12 @@ const categories = ['All', 'Research', 'Bioinformatics', 'Hardware / IoT', 'Lab 
           <div class="flex flex-col md:flex-row gap-8">
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-4">
-                <span class="px-3 py-1 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-xs font-bold">{projects[2].category}</span>
+                <span class="px-3 py-1 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-xs font-bold">{projects[0].category}</span>
               </div>
-              <h2 class="text-3xl font-extrabold mb-3">{projects[2].title}</h2>
-              <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{projects[2].description}</p>
+              <h2 class="text-3xl font-extrabold mb-3">{projects[0].title}</h2>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{projects[0].description}</p>
               <div class="grid grid-cols-2 gap-2 mb-6">
-                {projects[2].features.map(f => (
+                {projects[0].features.map(f => (
                   <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <i class="bi bi-check-circle-fill text-primary dark:text-primary-light text-xs"></i>
                     {f}
@@ -255,13 +173,13 @@ const categories = ['All', 'Research', 'Bioinformatics', 'Hardware / IoT', 'Lab 
                 ))}
               </div>
               <div class="flex flex-wrap gap-2 mb-6">
-                {projects[2].tags.map(tag => (
+                {projects[0].tags.map(tag => (
                   <span class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-dark-bg text-xs font-medium text-gray-600 dark:text-gray-400">{tag}</span>
                 ))}
               </div>
               <div class="flex gap-3">
-                {projects[2].github && (
-                  <a href={projects[2].github} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-xl text-sm hover:opacity-90 transition-opacity">
+                {projects[0].github && (
+                  <a href={projects[0].github} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-xl text-sm hover:opacity-90 transition-opacity">
                     <i class="bi bi-github"></i> Source Code
                   </a>
                 )}
@@ -283,7 +201,7 @@ const categories = ['All', 'Research', 'Bioinformatics', 'Hardware / IoT', 'Lab 
 
       <!-- Other Projects Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
-        {projects.slice(3).map((project, i) => (
+        {projects.slice(1).map((project, i) => (
           <div class="project-card reveal card-hover p-6 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border flex flex-col" data-category={project.category} style={`animation-delay: ${i * 0.05}s`}>
             <div class="flex items-center justify-between mb-3">
               <span class={`px-2.5 py-1 rounded-lg text-xs font-bold ${categoryColors[project.category] || 'bg-gray-500 text-white'}`}>{project.category}</span>
