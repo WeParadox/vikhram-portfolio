@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   site: 'https://weparadox.github.io',
-  base: '/vikhram',
+  base: '/vikhram-portfolio',
   integrations: [tailwind()],
   markdown: {
     shikiConfig: {
