@@ -113,8 +113,20 @@ const skillGroups = [
 
 const projects = [
   {
+    title: 'PhD Research: Metagenomic cfDNA for Sepsis Detection in Liver Transplant Recipients',
+    period: 'Aug 2026 - Present',
+    description: 'ANRF-funded project at ASNSMM under Dr. Lalitha Biswas. Evaluating clinical utility of metagenomic cfDNA sequencing for early and accurate sepsis detection in liver transplant recipients.',
+    bullets: [
+      'cfDNA extraction & library prep optimization from liver transplant plasma',
+      'Host depletion (Bowtie2/GRCh38) + pathogen ID (KMA + ResFinder/CARD)',
+      'AMR gene & point mutation profiling for antimicrobial resistance',
+      'Clinical cohort: liver transplant recipients with suspected sepsis',
+      'Rapid <24h reporting pipeline for clinical decision support'
+    ],
+  },
+  {
     title: "Master's Thesis",
-    period: 'Jun 2025 - Ongoing',
+    period: 'Jun 2025 - Jul 2026 (Completed)',
     description: 'A Novel Non-Viral Gene Vector: PBAE based Core-Shell Nanoparticle System for Gene Delivery',
     bullets: ['Synthesis of PBAE, Troubleshooting approaches and Optimization', 'Core-shell system design, Cell Culture, GFP-Transfection studies'],
   },
@@ -346,7 +358,7 @@ const chess = [
         </div>
       </section>
 
-      <!-- Publications -->
+<!-- Publications -->
       <section class="mb-16">
         <div class="flex items-center gap-3 mb-8">
           <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
@@ -359,12 +371,21 @@ const chess = [
             <div class="flex-1">
               <div class="font-bold text-lg mb-2">Investigating the Protective Effect of Camphene-Conjugated Zinc Oxide Nanoparticles Against Pseudomonas aeruginosa Infection in Danio rerio</div>
               <div class="text-sm text-gray-500 dark:text-gray-400 mb-1">BioNanoScience · Springer · September 2024</div>
-              <a href="https://doi.org/10.1007/s12668-024-01561-3" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-sm text-primary dark:text-primary-light hover:underline transition-colors">
-                <i class="bi bi-link-45deg"></i>
-                DOI: 10.1007/s12668-024-01561-3
-              </a>
+              <div class="flex items-center gap-3 flex-wrap mt-2">
+                <a href="https://doi.org/10.1007/s12668-024-01561-3" target="_blank" rel="noopener" class="inline-flex items-center gap-1 text-sm text-primary dark:text-primary-light hover:underline transition-colors">
+                  <i class="bi bi-link-45deg"></i>
+                  DOI: 10.1007/s12668-024-01561-3
+                </a>
+                <button 
+                  onclick="navigator.clipboard.writeText('10.1007/s12668-024-01561-3'); this.innerHTML='<i class=\"bi bi-check\"></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\"bi bi-clipboard\"></i> Copy DOI', 2000)"
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-bold hover:bg-primary/20 transition-colors cursor-pointer"
+                  title="Copy DOI to clipboard"
+                >
+                  <i class="bi bi-clipboard"></i> Copy DOI
+                </button>
+                <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">8 Citations</span>
+              </div>
             </div>
-            <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0 self-start">6 Citations</span>
           </div>
         </div>
       </section>

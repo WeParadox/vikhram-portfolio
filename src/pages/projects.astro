@@ -5,12 +5,28 @@ import Footer from '../components/Footer.astro';
 
 const projects = [
   {
-    title: 'Master\'s Thesis',
-    description: 'A Novel Non-Viral Gene Vector: PBAE based Core-Shell Nanoparticle System for Gene Delivery. Synthesis of PBAE with troubleshooting and optimization approaches. Core-shell system design, cell culture, and GFP-transfection studies.',
-    tags: ['PBAE', 'Nanoparticles', 'Gene Delivery', 'Cell Culture'],
+    title: 'PhD: Metagenomic cfDNA for Sepsis Detection in Liver Transplant Recipients',
+    description: 'ANRF-funded project at ASNSMM under Dr. Lalitha Biswas. Evaluating the Clinical Utility of Metagenomic Cell-Free DNA Sequencing for Early and Accurate Sepsis Detection in Liver Transplant Recipients. Developing clinical metagenomic pipelines for early sepsis detection using cfDNA from liver transplant recipients.',
+    tags: ['cfDNA', 'Metagenomics', 'KMA', 'ResFinder', 'CARD', 'Liver Transplant', 'Clinical Genomics', 'ANRF'],
     category: 'Research',
     flag: true,
-    features: ['PBAE synthesis & optimization', 'Core-shell nanoparticle design', 'GFP-transfection studies', 'In vitro assays'],
+    badge: 'ANRF Funded',
+    features: [
+      'Host depletion pipeline (Bowtie2 against GRCh38)',
+      'Pathogen ID: 30+ bacteria/fungi (KMA + ResFinder/CARD)',
+      'AMR gene detection & point mutations',
+      'Clinical cohort: liver transplant patients',
+      'Rapid turnaround: <24h from sample to report',
+      'Integration with hospital LIMS for clinical reporting'
+    ],
+  },
+  {
+    title: 'Master\'s Thesis',
+    description: 'A Novel Non-Viral Gene Vector: PBAE based Core-Shell Nanoparticle System for Gene Delivery. Synthesis of PBAE with troubleshooting and optimization approaches. Core-shell system design, cell culture, and GFP-transfection studies. Manuscript in preparation.',
+    tags: ['PBAE', 'Nanoparticles', 'Gene Delivery', 'Cell Culture'],
+    category: 'Research',
+    badge: 'Completed',
+    features: ['PBAE synthesis & optimization', 'Core-shell nanoparticle design', 'GFP-transfection studies', 'In vitro assays', 'Manuscript in preparation'],
   },
   {
     title: 'PathSeq_AMR',
@@ -23,7 +39,7 @@ const projects = [
   },
   {
     title: 'Bachelor\'s Thesis',
-    description: 'Examining the Therapeutic effects of Camphene Conjugated with Zinc Oxide Nanoparticles on Zebrafish Larvae. Published in BioNanoScience with 6 citations.',
+    description: 'Examining the Therapeutic effects of Camphene Conjugated with Zinc Oxide Nanoparticles on Zebrafish Larvae. Published in BioNanoScience with 8 citations.',
     tags: ['Zebrafish', 'Nanoparticles', 'Toxicology', 'BioNanoScience'],
     category: 'Research',
     badge: 'Published',
@@ -105,6 +121,8 @@ const categoryColors: Record<string, string> = {
   'Side Project': 'bg-pink-500 text-white',
   'Knowledge': 'bg-indigo-500 text-white',
 };
+
+const categories = ['All', 'Research', 'Bioinformatics', 'Hardware / IoT', 'Lab Tool', 'Reference', 'Side Project', 'Knowledge'];
 ---
 
 <Layout title="Vikhram Ravi - Projects">
@@ -121,11 +139,24 @@ const categoryColors: Record<string, string> = {
         </p>
       </div>
 
-      <!-- Featured Project: Master's Thesis -->
+      <!-- Category Filter -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12 reveal" style="animation-delay: 0.1s">
+        {categories.map((cat, i) => (
+          <button
+            class={`category-filter px-5 py-2 rounded-full text-sm font-bold transition-all duration-200 ${i === 0 ? 'bg-primary text-white shadow-lg' : 'bg-gray-100 dark:bg-dark-card text-gray-600 dark:text-gray-400 hover:bg-primary/10 dark:hover:bg-primary/20'}`}
+            data-category={cat}
+            style={`animation-delay: ${i * 0.03}s`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Featured Project: PhD Project -->
       <div class="mb-12 reveal">
         <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-500/10 via-white to-primary/10 dark:from-purple-500/20 dark:via-dark-card dark:to-primary/20 border border-purple-500/20 dark:border-purple-500/30 p-8 md:p-10">
           <div class="absolute top-6 right-6">
-            <span class="px-3 py-1.5 rounded-full bg-purple-500 text-white text-xs font-bold uppercase tracking-wider">Current</span>
+            <span class="px-3 py-1.5 rounded-full bg-purple-500 text-white text-xs font-bold uppercase tracking-wider">ANRF Funded</span>
           </div>
           <div class="flex flex-col md:flex-row gap-8">
             <div class="flex-1">
@@ -142,8 +173,49 @@ const categoryColors: Record<string, string> = {
                   </div>
                 ))}
               </div>
-              <div class="flex flex-wrap gap-2">
+              <div class="flex flex-wrap gap-2 mb-6">
                 {projects[0].tags.map(tag => (
+                  <span class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-dark-bg text-xs font-medium text-gray-600 dark:text-gray-400">{tag}</span>
+                ))}
+              </div>
+            </div>
+            <div class="md:w-72 shrink-0 flex items-center justify-center">
+              <div class="w-full aspect-square rounded-2xl bg-gradient-to-br from-purple-500/20 to-primary/20 dark:from-purple-500/30 dark:to-primary/30 flex flex-col items-center justify-center p-6 text-center">
+                <i class="bi bi-dna text-5xl text-purple-500 mb-3"></i>
+                <div class="text-2xl font-extrabold text-purple-500">cfDNA</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Sequencing</div>
+                <div class="w-full h-px bg-gray-200 dark:bg-dark-border my-3"></div>
+                <div class="text-2xl font-extrabold text-primary dark:text-primary-light">Sepsis</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Detection</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Project: Master's Thesis -->
+      <div class="mb-12 reveal">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-500/10 via-white to-primary/10 dark:from-purple-500/20 dark:via-dark-card dark:to-primary/20 border border-purple-500/20 dark:border-purple-500/30 p-8 md:p-10">
+          <div class="absolute top-6 right-6">
+            <span class="px-3 py-1.5 rounded-full bg-green-500 text-white text-xs font-bold uppercase tracking-wider">Completed</span>
+          </div>
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="px-3 py-1 rounded-lg bg-purple-500/10 dark:bg-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-bold">{projects[1].category}</span>
+              </div>
+              <h2 class="text-3xl font-extrabold mb-3">{projects[1].title}</h2>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{projects[1].description}</p>
+              <div class="grid grid-cols-2 gap-2 mb-6">
+                {projects[1].features.map(f => (
+                  <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                    <i class="bi bi-check-circle-fill text-purple-500 text-xs"></i>
+                    {f}
+                  </div>
+                ))}
+              </div>
+              <div class="flex flex-wrap gap-2 mb-6">
+                {projects[1].tags.map(tag => (
                   <span class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-dark-bg text-xs font-medium text-gray-600 dark:text-gray-400">{tag}</span>
                 ))}
               </div>
@@ -152,7 +224,7 @@ const categoryColors: Record<string, string> = {
               <div class="w-full aspect-square rounded-2xl bg-gradient-to-br from-purple-500/20 to-primary/20 dark:from-purple-500/30 dark:to-primary/30 flex flex-col items-center justify-center p-6 text-center">
                 <i class="bi bi-capsule text-5xl text-purple-500 mb-3"></i>
                 <div class="text-xl font-extrabold">PBAE</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">Core-Shell Nanoparticles</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Core-Shell</div>
                 <div class="w-full h-px bg-gray-200 dark:bg-dark-border my-3"></div>
                 <div class="text-xl font-extrabold text-primary dark:text-primary-light">Gene</div>
                 <div class="text-sm text-gray-500 dark:text-gray-400">Delivery</div>
@@ -171,12 +243,12 @@ const categoryColors: Record<string, string> = {
           <div class="flex flex-col md:flex-row gap-8">
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-4">
-                <span class="px-3 py-1 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-xs font-bold">{projects[1].category}</span>
+                <span class="px-3 py-1 rounded-lg bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-xs font-bold">{projects[2].category}</span>
               </div>
-              <h2 class="text-3xl font-extrabold mb-3">{projects[1].title}</h2>
-              <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{projects[1].description}</p>
+              <h2 class="text-3xl font-extrabold mb-3">{projects[2].title}</h2>
+              <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">{projects[2].description}</p>
               <div class="grid grid-cols-2 gap-2 mb-6">
-                {projects[1].features.map(f => (
+                {projects[2].features.map(f => (
                   <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <i class="bi bi-check-circle-fill text-primary dark:text-primary-light text-xs"></i>
                     {f}
@@ -184,13 +256,13 @@ const categoryColors: Record<string, string> = {
                 ))}
               </div>
               <div class="flex flex-wrap gap-2 mb-6">
-                {projects[1].tags.map(tag => (
+                {projects[2].tags.map(tag => (
                   <span class="px-3 py-1 rounded-lg bg-gray-100 dark:bg-dark-bg text-xs font-medium text-gray-600 dark:text-gray-400">{tag}</span>
                 ))}
               </div>
               <div class="flex gap-3">
-                {projects[1].github && (
-                  <a href={projects[1].github} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-xl text-sm hover:opacity-90 transition-opacity">
+                {projects[2].github && (
+                  <a href={projects[2].github} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-bold rounded-xl text-sm hover:opacity-90 transition-opacity">
                     <i class="bi bi-github"></i> Source Code
                   </a>
                 )}
@@ -211,13 +283,13 @@ const categoryColors: Record<string, string> = {
       </div>
 
       <!-- Other Projects Grid -->
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.slice(2).map((project, i) => (
-          <div class="reveal card-hover p-6 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border flex flex-col" style={`animation-delay: ${i * 0.05}s`}>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+        {projects.slice(3).map((project, i) => (
+          <div class="project-card reveal card-hover p-6 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border flex flex-col" data-category={project.category} style={`animation-delay: ${i * 0.05}s`}>
             <div class="flex items-center justify-between mb-3">
               <span class={`px-2.5 py-1 rounded-lg text-xs font-bold ${categoryColors[project.category] || 'bg-gray-500 text-white'}`}>{project.category}</span>
               {project.badge && (
-                <span class={`px-2.5 py-1 rounded-lg text-xs font-bold ${project.badge === 'Published' ? 'bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light' : 'bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light'}`}>{project.badge}</span>
+                <span class={`px-2.5 py-1 rounded-lg text-xs font-bold ${project.badge === 'Published' ? 'bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light' : project.badge === 'Completed' ? 'bg-green-500/10 dark:bg-green-500/20 text-green-500' : 'bg-accent/10 dark:bg-accent/20 text-accent dark:text-accent-light'}`}>{project.badge}</span>
               )}
             </div>
             <h3 class="text-lg font-extrabold mb-2">{project.title}</h3>
@@ -246,3 +318,47 @@ const categoryColors: Record<string, string> = {
   </main>
   <Footer />
 </Layout>
+
+<script is:inline>
+  // Category filter functionality
+  const filterButtons = document.querySelectorAll('.category-filter');
+  const projectCards = document.querySelectorAll('.project-card');
+  
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.dataset.category;
+      
+      // Update active button
+      filterButtons.forEach(b => {
+        b.classList.remove('bg-primary', 'text-white', 'shadow-lg');
+        b.classList.add('bg-gray-100', 'dark:bg-dark-card', 'text-gray-600', 'dark:text-gray-400');
+      });
+      btn.classList.remove('bg-gray-100', 'dark:bg-dark-card', 'text-gray-600', 'dark:text-gray-400');
+      btn.classList.add('bg-primary', 'text-white', 'shadow-lg');
+      
+      // Filter cards
+      projectCards.forEach(card => {
+        const cardCategory = card.dataset.category;
+        if (category === 'All' || category === cardCategory) {
+          card.style.display = 'flex';
+          card.style.animation = 'fadeIn 0.3s ease-out forwards';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .project-card {
+    transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
+  }
+  .category-filter {
+    transition: all 0.2s ease;
+  }
+</style>
