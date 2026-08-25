@@ -24,7 +24,9 @@
   </div>
 </div>
 
-<style>
+<style is:global>
+  /* Global: these classes are applied to JS-created DOM elements that never
+     receive Astro's scoped data-astro-cid attribute. */
   .node-icon {
     position: absolute;
     transform: translate(-50%, -50%) scale(1);
@@ -42,7 +44,9 @@
     transform: translate(-50%, -50%) scale(1.22);
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.55);
   }
+</style>
 
+<style>
   .constellation-tooltip {
     background: white;
     border: 1px solid #e5e7eb;
@@ -202,10 +206,12 @@
       ['molbio', 'genedelivery'],
       ['genedelivery', 'polymer'],
       ['genedelivery', 'characterization'],
+      ['genedelivery', 'cellculture'],
       ['polymer', 'characterization'],
       ['polymer', 'industrial'],
       ['characterization', 'industrial'],
       ['characterization', 'zebrafish'],
+      ['molbio', 'zebrafish'],
     ];
 
     const categoryMap = {

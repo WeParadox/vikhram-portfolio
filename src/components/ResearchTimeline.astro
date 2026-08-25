@@ -1,16 +1,7 @@
 ---
 const milestones = [
   {
-    date: 'Jul 2022',
-    type: 'project',
-    title: 'Clin Mist',
-    detail: 'Natural surface disinfectant from terpinen-4-ol (Green tea extract)',
-    icon: 'bi-droplet',
-    color: 'green',
-  },
-  {
-    period: 'Jul 2020 - Jun 2024',
-    date: 'Jun 2024',
+    date: 'Jul 2020 - Jun 2024',
     type: 'education',
     title: 'B.Tech Biotechnology · SIMATS, Chennai',
     detail: '9/10 GPA · Best Outgoing Student 2024',
@@ -18,15 +9,7 @@ const milestones = [
     color: 'accent',
   },
   {
-    date: 'Oct 2023 - Mar 2024',
-    type: 'project',
-    title: 'Ammo Mist',
-    detail: 'IoT ammonia sensor for aquariums (ESP32)',
-    icon: 'bi-cpu',
-    color: 'emerald',
-  },
-  {
-    date: 'May 2024',
+    date: 'Aug 2024',
     type: 'publication',
     title: 'BioNanoScience Publication',
     detail: 'Camphene-ZnO Nanoparticles vs P. aeruginosa in Danio rerio · 8 Citations',
@@ -34,7 +17,6 @@ const milestones = [
     color: 'purple',
   },
   {
-    period: 'Aug 2024 - Jul 2026',
     date: 'Aug 2024',
     type: 'education',
     title: 'Dual Master\'s Begins',
@@ -51,7 +33,7 @@ const milestones = [
     color: 'amber',
   },
   {
-    date: 'Jul 2026',
+    date: 'May 2026',
     type: 'education',
     title: 'Dual Master\'s Completed',
     detail: 'M.Tech + M.S. degrees awarded · Master\'s Thesis: PBAE Core-Shell Gene Vector',
@@ -61,18 +43,10 @@ const milestones = [
   {
     date: 'Jun 2026 - Present',
     type: 'experience',
-    title: 'JRF @ ASNSMM',
-    detail: 'ANRF-funded PhD project under Dr. Lalitha Biswas',
-    icon: 'bi-briefcase',
-    color: 'teal',
-  },
-  {
-    date: 'Present',
-    type: 'project',
-    title: 'PhD Research',
-    detail: 'Metagenomic cfDNA sequencing for sepsis detection in liver transplant recipients',
+    title: 'JRF & PhD Research @ ASNSMM',
+    detail: 'ANRF-funded PhD under Dr. Lalitha Biswas · Metagenomic cfDNA sequencing for sepsis detection in liver transplant recipients',
     icon: 'bi-dna',
-    color: 'purple',
+    color: 'teal',
   },
 ];
 
@@ -109,10 +83,10 @@ const typeStyles = {
               {/* Card */}
               <div class={`flex-1 md:w-[calc(50%-2.5rem)] ${isLeft ? 'md:pr-10 md:text-right' : 'md:pl-10'} pl-16 md:pl-0`}>
                 <div class={`reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border inline-block w-full text-left`}>
-                  <div class={`flex items-center gap-2 mb-2 flex-wrap ${isLeft ? 'md:justify-end' : ''}`}>
+                  <div class="flex items-center gap-2 mb-1.5 flex-wrap">
                     <span class={`px-2 py-0.5 rounded-md ${style.bg} text-white text-[10px] font-bold uppercase tracking-wider`}>{style.label}</span>
-                    <span class="text-xs text-gray-400 dark:text-gray-500">{m.date}</span>
                   </div>
+                  <div class="text-xs font-semibold tracking-wide text-gray-400 dark:text-gray-500 mb-1.5">{m.date}</div>
                   <h3 class="font-bold text-gray-900 dark:text-gray-100 text-sm md:text-base mb-1">{m.title}</h3>
                   <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{m.detail}</p>
                 </div>
