@@ -35,10 +35,16 @@ const base = '/vikhram';
     <div class="text-center max-w-4xl mx-auto">
       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-sm font-semibold mb-8 animate-fade-in">
         <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-        JRF · Metagenomics · Immunology
+        Interdisciplinary to the core!
       </div>
 
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-in" style="animation-delay: 0.1s">
+      <div class="flex flex-wrap justify-center gap-2 mb-8 animate-fade-in" style="animation-delay: 0.15s">
+        <span class="tag-chip bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light border border-primary/20 dark:border-primary/30 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-primary/20 dark:hover:bg-primary/30 hover:scale-105 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300">Nanomaterials</span>
+        <span class="tag-chip bg-accent/10 dark:bg-accent/20 text-accent dark:text-accent-light border border-accent/20 dark:border-accent/30 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-accent/20 dark:hover:bg-accent/30 hover:scale-105 hover:shadow-lg hover:shadow-accent/20 transition-all duration-300" style="animation-delay: 0.1s">Immunology</span>
+        <span class="tag-chip bg-green-500/10 dark:bg-green-500/20 text-green-500 dark:text-green-400 border border-green-500/20 dark:border-green-500/30 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-green-500/20 dark:hover:bg-green-500/30 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300" style="animation-delay: 0.2s">Genomics</span>
+      </div>
+
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-in" style="animation-delay: 0.2s">
         From Nanoparticles to
         <span class="text-gradient block mt-2">Pathogen Genomes</span>
       </h1>
@@ -67,5 +73,27 @@ const base = '/vikhram';
   @keyframes floatSlow {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-15px); }
+  }
+  @keyframes tagPopIn {
+    0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes tagPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(13, 148, 136, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(13, 148, 136, 0); }
+  }
+  .tag-chip {
+    animation: tagPopIn 0.6s ease-out forwards;
+    opacity: 0;
+    cursor: default;
+  }
+  .tag-chip:nth-child(1) { animation-delay: 0.15s; }
+  .tag-chip:nth-child(2) { animation-delay: 0.25s; }
+  .tag-chip:nth-child(3) { animation-delay: 0.35s; }
+  .tag-chip:hover {
+    animation: tagPulse 2s infinite;
+  }
+  .dark .tag-chip:hover {
+    animation: tagPulse 2s infinite;
   }
 </style>

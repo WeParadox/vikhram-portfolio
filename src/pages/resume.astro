@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import SkillConstellation from '../components/SkillConstellation.astro';
 const base = '/vikhram';
 
 const experiences = [
@@ -121,7 +122,7 @@ const projects = [
   },
   {
     title: "Master's Thesis",
-    period: 'Jun 2025 - Jul 2026 (Completed)',
+    period: 'Jun 2025 - Jul 2026',
     description: 'A Novel Non-Viral Gene Vector: PBAE based Core-Shell Nanoparticle System for Gene Delivery',
     bullets: ['Synthesis of PBAE, Troubleshooting approaches and Optimization', 'Core-shell system design, Cell Culture, GFP-Transfection studies'],
   },
@@ -346,6 +347,8 @@ const chess = [
         </div>
       </section>
 
+      <SkillConstellation />
+
       <!-- Projects -->
       <section class="mb-16">
         <div class="flex items-center gap-3 mb-8">
@@ -445,7 +448,10 @@ const chess = [
                 >
                   <i class="bi bi-clipboard"></i> Copy DOI
                 </button>
-                <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">8 Citations</span>
+                <span class="flex items-baseline gap-2">
+                  <span class="citation-counter font-bold text-primary dark:text-primary-light text-lg" data-target="8">0</span>
+                  <span class="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">Citations</span>
+                </span>
               </div>
             </div>
           </div>
@@ -461,6 +467,35 @@ const chess = [
             setTimeout(() => btn.innerHTML = original, 2000);
           });
         });
+        
+        // Animated citation counter
+        const counters = document.querySelectorAll('.citation-counter');
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const counter = entry.target;
+              const target = parseInt(counter.dataset.target) || 0;
+              let current = 0;
+              const duration = 1500;
+              const stepTime = 50;
+              const increment = target / (duration / stepTime);
+              
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  counter.textContent = target;
+                  clearInterval(timer);
+                } else {
+                  counter.textContent = Math.floor(current);
+                }
+              }, stepTime);
+              
+              counterObserver.unobserve(counter);
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.citation-counter').forEach(counter => counterObserver.observe(counter));
       </script>
 
       <!-- Awards -->

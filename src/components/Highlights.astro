@@ -4,7 +4,8 @@ const highlights = [
     icon: 'bi-journal-richtext',
     label: 'Published',
     title: 'BioNanoScience',
-    detail: '8 Citations',
+    detail: 'Citations',
+    count: 8,
     color: 'primary',
     href: '/resume#publications',
   },
@@ -65,7 +66,14 @@ const highlights = [
               {h.label}
             </div>
             <div class="font-bold text-gray-900 dark:text-gray-100 mb-0.5">{h.title}</div>
-            <div class="text-sm text-gray-500 dark:text-gray-400">{h.detail}</div>
+            {h.count ? (
+              <div class="flex items-baseline gap-2">
+                <span class="citation-counter font-bold text-primary dark:text-primary-light text-lg" data-target={h.count}>0</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">Citations</span>
+              </div>
+            ) : (
+              <div class="text-sm text-gray-500 dark:text-gray-400">{h.detail}</div>
+            )}
           </div>
           <i class="bi bi-chevron-right text-gray-400 dark:text-gray-500 shrink-0 transition-transform group-hover:translate-x-1" />
         </a>
@@ -78,4 +86,43 @@ const highlights = [
   .group:hover .bi-chevron-right {
     transform: translateX(4px);
   }
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .citation-counter {
+    animation: countUp 0.8s ease-out forwards;
+  }
 </style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('.citation-counter');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseInt(counter.dataset.target) || 0;
+          let current = 0;
+          const duration = 1500;
+          const stepTime = 50;
+          const increment = target / (duration / stepTime);
+          
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              counter.textContent = target;
+              clearInterval(timer);
+            } else {
+              counter.textContent = Math.floor(current);
+            }
+          }, stepTime);
+          
+          observer.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => observer.observe(counter));
+  });
+</script>

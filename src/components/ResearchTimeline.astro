@@ -1,0 +1,199 @@
+---
+const milestones = [
+  {
+    date: 'Jul 2022',
+    type: 'project',
+    title: 'Clin Mist',
+    detail: 'Natural surface disinfectant from terpinen-4-ol (Green tea extract)',
+    icon: 'bi-droplet',
+    color: 'green',
+  },
+  {
+    period: 'Jul 2020 - Jun 2024',
+    date: 'Jun 2024',
+    type: 'education',
+    title: 'B.Tech Biotechnology · SIMATS, Chennai',
+    detail: '9/10 GPA · Best Outgoing Student 2024',
+    icon: 'bi-mortarboard',
+    color: 'accent',
+  },
+  {
+    date: 'Oct 2023 - Mar 2024',
+    type: 'project',
+    title: 'Ammo Mist',
+    detail: 'IoT ammonia sensor for aquariums (ESP32)',
+    icon: 'bi-cpu',
+    color: 'emerald',
+  },
+  {
+    date: 'May 2024',
+    type: 'publication',
+    title: 'BioNanoScience Publication',
+    detail: 'Camphene-ZnO Nanoparticles vs P. aeruginosa in Danio rerio · 8 Citations',
+    icon: 'bi-journal-richtext',
+    color: 'purple',
+  },
+  {
+    period: 'Aug 2024 - Jul 2026',
+    date: 'Aug 2024',
+    type: 'education',
+    title: 'Dual Master\'s Begins',
+    detail: 'M.Tech Nanobiotechnology @ ASNSMM (9.48/10) + MS Immunobiology @ UoA (4/4)',
+    icon: 'bi-mortarboard',
+    color: 'accent',
+  },
+  {
+    date: 'Mar 2026',
+    type: 'award',
+    title: 'GATE Biotechnology 2026',
+    detail: 'Qualified · IIT Guwahati',
+    icon: 'bi-trophy',
+    color: 'amber',
+  },
+  {
+    date: 'Jul 2026',
+    type: 'education',
+    title: 'Dual Master\'s Completed',
+    detail: 'M.Tech + M.S. degrees awarded · Master\'s Thesis: PBAE Core-Shell Gene Vector',
+    icon: 'bi-patch-check',
+    color: 'primary',
+  },
+  {
+    date: 'Jun 2026 - Present',
+    type: 'experience',
+    title: 'JRF @ ASNSMM',
+    detail: 'ANRF-funded PhD project under Dr. Lalitha Biswas',
+    icon: 'bi-briefcase',
+    color: 'teal',
+  },
+  {
+    date: 'Present',
+    type: 'project',
+    title: 'PhD Research',
+    detail: 'Metagenomic cfDNA sequencing for sepsis detection in liver transplant recipients',
+    icon: 'bi-dna',
+    color: 'purple',
+  },
+];
+
+const typeStyles = {
+  education: { bg: 'bg-accent', text: 'text-accent dark:text-accent-light', ring: 'ring-accent/30', label: 'Education' },
+  publication: { bg: 'bg-purple-500', text: 'text-purple-500 dark:text-purple-400', ring: 'ring-purple-500/30', label: 'Publication' },
+  project: { bg: 'bg-emerald-500', text: 'text-emerald-500 dark:text-emerald-400', ring: 'ring-emerald-500/30', label: 'Project' },
+  award: { bg: 'bg-amber-500', text: 'text-amber-500 dark:text-amber-400', ring: 'ring-amber-500/30', label: 'Award' },
+  experience: { bg: 'bg-primary', text: 'text-primary dark:text-primary-light', ring: 'ring-primary/30', label: 'Experience' },
+};
+---
+
+<section class="py-20">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14 reveal">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-3">
+        Research <span class="text-gradient">Journey</span>
+      </h2>
+      <p class="text-gray-600 dark:text-gray-400">Key milestones — from undergraduate research to doctoral work</p>
+    </div>
+
+    <div class="relative" id="timeline-container">
+      <!-- Vertical line -->
+      <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/60 via-accent/50 to-purple-500/60 md:-translate-x-px" id="timeline-line"></div>
+      <!-- Progress line -->
+      <div class="absolute left-6 md:left-1/2 top-0 w-0.5 bg-primary transition-all duration-300 md:-translate-x-px" id="timeline-progress" style="height: 0;"></div>
+
+      <div class="space-y-10">
+        {milestones.map((m, i) => {
+          const style = typeStyles[m.type];
+          const isLeft = i % 2 === 0;
+          return (
+            <div class={`timeline-item relative flex items-start gap-6 md:gap-0 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'}`} data-index={i}>
+              {/* Card */}
+              <div class={`flex-1 md:w-[calc(50%-2.5rem)] ${isLeft ? 'md:pr-10 md:text-right' : 'md:pl-10'} pl-16 md:pl-0`}>
+                <div class={`reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border inline-block w-full text-left`}>
+                  <div class={`flex items-center gap-2 mb-2 flex-wrap ${isLeft ? 'md:justify-end' : ''}`}>
+                    <span class={`px-2 py-0.5 rounded-md ${style.bg} text-white text-[10px] font-bold uppercase tracking-wider`}>{style.label}</span>
+                    <span class="text-xs text-gray-400 dark:text-gray-500">{m.date}</span>
+                  </div>
+                  <h3 class="font-bold text-gray-900 dark:text-gray-100 text-sm md:text-base mb-1">{m.title}</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{m.detail}</p>
+                </div>
+              </div>
+
+              {/* Node on line */}
+              <div class="absolute left-6 md:left-1/2 -translate-x-1/2 z-10 timeline-node" data-node={i}>
+                <div class={`w-12 h-12 rounded-full ${style.bg} flex items-center justify-center shadow-lg ring-4 ${style.ring} transition-transform duration-300 hover:scale-110`}>
+                  <i class={`bi ${m.icon} text-white text-lg`}></i>
+                </div>
+              </div>
+
+              {/* Spacer for other side */}
+              <div class="hidden md:block md:w-[calc(50%-2.5rem)]"></div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline-item .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease-out, transform 0.5s ease-out;
+  }
+  .timeline-item.in-view .reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .timeline-node {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+    transition: opacity 0.5s ease-out 0.15s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s;
+  }
+  .timeline-item.in-view .timeline-node {
+    opacity: 1;
+  }
+  @media (min-width: 768px) {
+    .timeline-node {
+      transform: translate(-50%, 20px) scale(0.6);
+    }
+    .timeline-item.in-view .timeline-node {
+      transform: translate(-50%, 0) scale(1);
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const container = document.getElementById('timeline-container');
+    if (!container) return;
+
+    const items = container.querySelectorAll('.timeline-item');
+    const progress = document.getElementById('timeline-progress');
+    const line = document.getElementById('timeline-line');
+
+    // Reveal items as they enter viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.2 });
+    items.forEach(item => observer.observe(item));
+
+    // Scroll progress along the timeline
+    function updateProgress() {
+      if (!container || !progress || !line) return;
+      const rect = container.getBoundingClientRect();
+      const totalHeight = rect.height;
+      const viewportCenter = window.innerHeight / 2;
+      const scrolled = Math.min(Math.max(viewportCenter - rect.top, 0), totalHeight);
+      progress.style.height = scrolled + 'px';
+    }
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  })();
+</script>

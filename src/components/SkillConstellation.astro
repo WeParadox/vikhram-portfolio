@@ -1,0 +1,499 @@
+---
+const skillNodes = [
+  { 
+    id: 'metagenomics', 
+    label: 'Metagenomics', 
+    category: 'Computational', 
+    color: '#0d9488',
+    x: 0.5, y: 0.15,
+    skills: ['cfDNA Analysis', 'Pathogen ID', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker']
+  },
+  { 
+    id: 'bioinformatics', 
+    label: 'Bioinformatics', 
+    category: 'Computational', 
+    color: '#0d9488',
+    x: 0.25, y: 0.35,
+    skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux']
+  },
+  { 
+    id: 'molbio', 
+    label: 'Molecular Biology', 
+    category: 'Wet Lab', 
+    color: '#f59e0b',
+    x: 0.75, y: 0.35,
+    skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'SDS PAGE', 'ELISA', 'TLC', 'ROS/Toxicity Assays']
+  },
+  { 
+    id: 'cellculture', 
+    label: 'Cell Culture', 
+    category: 'Wet Lab', 
+    color: '#f59e0b',
+    x: 0.9, y: 0.55,
+    skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays']
+  },
+  { 
+    id: 'zebrafish', 
+    label: 'Zebrafish Model', 
+    category: 'Wet Lab', 
+    color: '#f59e0b',
+    x: 0.7, y: 0.8,
+    skills: ['Developmental Toxicity', 'Neurobehavior', 'GPx/GST Assays', 'DCFH-DA Staining']
+  },
+  { 
+    id: 'characterization', 
+    label: 'Characterization', 
+    category: 'Analysis', 
+    color: '#6366f1',
+    x: 0.3, y: 0.8,
+    skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR']
+  },
+  { 
+    id: 'genedelivery', 
+    label: 'Gene Delivery', 
+    category: 'Engineering', 
+    color: '#ec4899',
+    x: 0.5, y: 0.5,
+    skills: ['Polyplex Systems', 'Core-Shell NPs', 'PBAE Synthesis']
+  },
+  { 
+    id: 'polymer', 
+    label: 'Polymer Chemistry', 
+    category: 'Engineering', 
+    color: '#ec4899',
+    x: 0.15, y: 0.55,
+    skills: ['Linear Polymer Synthesis', 'Carothers Equation']
+  },
+  { 
+    id: 'industrial', 
+    label: 'Industrial Biotech', 
+    category: 'Engineering', 
+    color: '#06b6d4',
+    x: 0.1, y: 0.3,
+    skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II']
+  },
+  { 
+    id: 'data', 
+    label: 'Data Analysis', 
+    category: 'Analysis', 
+    color: '#6366f1',
+    x: 0.9, y: 0.2,
+    skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau']
+  },
+];
+
+const edges = [
+  ['metagenomics', 'bioinformatics'],
+  ['bioinformatics', 'molbio'],
+  ['molbio', 'cellculture'],
+  ['cellculture', 'zebrafish'],
+  ['molbio', 'characterization'],
+  ['molbio', 'genedelivery'],
+  ['genedelivery', 'polymer'],
+  ['polymer', 'industrial'],
+  ['bioinformatics', 'data'],
+  ['metagenomics', 'genedelivery'],
+  ['cellculture', 'genedelivery'],
+];
+
+const categoryColors = {
+  'Computational': '#0d9488',
+  'Wet Lab': '#f59e0b',
+  'Engineering': '#ec4899',
+  'Analysis': '#6366f1',
+  'Systems': '#06b6d4',
+};
+
+const categoryMap = {
+  'metagenomics': 'Computational',
+  'bioinformatics': 'Computational',
+  'molbio': 'Wet Lab',
+  'cellculture': 'Wet Lab',
+  'zebrafish': 'Wet Lab',
+  'characterization': 'Analysis',
+  'genedelivery': 'Engineering',
+  'polymer': 'Engineering',
+  'industrial': 'Systems',
+  'data': 'Analysis',
+};
+---
+
+<div class="skill-constellation-section py-20 bg-gray-50/50 dark:bg-dark-card/30">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+        <span class="text-gradient">Skill</span> Constellation
+      </h2>
+      <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Hover a node to see connected skills. Click to expand and view all skills in that domain.
+      </p>
+    </div>
+    
+    <div class="relative" style="height: 500px;">
+      <canvas id="constellation-canvas" class="w-full h-full" style="touch-action: none;"></canvas>
+      <div id="tooltip" class="constellation-tooltip fixed pointer-events-none opacity-0 transition-opacity duration-200 z-50"></div>
+      <div id="skill-panel" class="constellation-panel fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-md p-4 bg-white dark:bg-dark-card rounded-2xl shadow-2xl border border-gray-100 dark:border-dark-border transform transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50"></div>
+    </div>
+    
+    <div class="flex flex-wrap justify-center gap-2 mt-8" id="legend"></div>
+  </div>
+</div>
+
+<style>
+  .constellation-tooltip {
+    background: white;
+    border: 1px solid #e5e7eb;
+    padding: 12px 16px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    font-size: 13px;
+    z-index: 100;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    margin-bottom: 8px;
+  }
+  .dark .constellation-tooltip {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  .constellation-tooltip-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .constellation-tooltip-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .constellation-tooltip-skill {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    background: #f1f5f9;
+    color: #475569;
+  }
+  .dark .constellation-tooltip-skill {
+    background: #334155;
+    color: #cbd5e1;
+  }
+  .constellation-panel {
+    background: white;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  }
+  .dark .constellation-panel {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .dark .panel-header {
+    border-color: #334155;
+  }
+  .panel-title {
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-close {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .panel-close:hover { color: #ef4444; }
+  .panel-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .panel-skill {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+  }
+  .dark .panel-skill {
+    background: #334155;
+    color: #cbd5e1;
+    border-color: #475569;
+  }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #64748b;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+  }
+  .dark .legend-item {
+    background: #1e293b;
+    border-color: #334155;
+    color: #94a3b8;
+  }
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+</style>
+
+<script>
+  (() => {
+    const canvas = document.getElementById('constellation-canvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const tooltip = document.getElementById('tooltip');
+    const panel = document.getElementById('skill-panel');
+    const legend = document.getElementById('legend');
+
+    let width = 0, height = 0, animationId = null;
+    let hoveredNode = null, selectedNode = null;
+
+    const nodes = [
+      { id: 'metagenomics', label: 'Metagenomics', color: '#0d9488', x: 0.5, y: 0.15, skills: ['cfDNA Analysis', 'Pathogen ID', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker'] },
+      { id: 'bioinformatics', label: 'Bioinformatics', color: '#0d9488', x: 0.25, y: 0.35, skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux'] },
+      { id: 'molbio', label: 'Molecular Biology', color: '#f59e0b', x: 0.75, y: 0.35, skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'SDS PAGE', 'ELISA', 'TLC', 'ROS/Toxicity Assays'] },
+      { id: 'cellculture', label: 'Cell Culture', color: '#f59e0b', x: 0.9, y: 0.55, skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays'] },
+      { id: 'zebrafish', label: 'Zebrafish Model', color: '#f59e0b', x: 0.7, y: 0.8, skills: ['Developmental Toxicity', 'Neurobehavior', 'GPx/GST Assays', 'DCFH-DA Staining'] },
+      { id: 'characterization', label: 'Characterization', color: '#6366f1', x: 0.3, y: 0.8, skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR'] },
+      { id: 'genedelivery', label: 'Gene Delivery', color: '#ec4899', x: 0.5, y: 0.5, skills: ['Polyplex Systems', 'Core-Shell NPs', 'PBAE Synthesis'] },
+      { id: 'polymer', label: 'Polymer Chemistry', color: '#ec4899', x: 0.15, y: 0.55, skills: ['Linear Polymer Synthesis', 'Carothers Equation'] },
+      { id: 'industrial', label: 'Industrial Biotech', color: '#06b6d4', x: 0.1, y: 0.3, skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II'] },
+      { id: 'data', label: 'Data Analysis', color: '#6366f1', x: 0.9, y: 0.2, skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau'] },
+    ];
+
+    const edges = [
+      ['metagenomics', 'bioinformatics'],
+      ['bioinformatics', 'molbio'],
+      ['molbio', 'cellculture'],
+      ['cellculture', 'zebrafish'],
+      ['molbio', 'characterization'],
+      ['molbio', 'genedelivery'],
+      ['genedelivery', 'polymer'],
+      ['polymer', 'industrial'],
+      ['bioinformatics', 'data'],
+      ['metagenomics', 'genedelivery'],
+      ['cellculture', 'genedelivery'],
+    ];
+
+    const categoryMap = {
+      metagenomics: 'Computational', bioinformatics: 'Computational',
+      molbio: 'Wet Lab', cellculture: 'Wet Lab', zebrafish: 'Wet Lab',
+      characterization: 'Analysis', genedelivery: 'Engineering',
+      polymer: 'Engineering', industrial: 'Systems', data: 'Analysis',
+    };
+
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      width = rect.width; height = rect.height;
+      canvas.width = width * dpr; canvas.height = height * dpr;
+      canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    const getNodePos = n => ({ x: n.x * width, y: n.y * height });
+    const isDark = () => document.documentElement.classList.contains('dark');
+
+    function drawEdges() {
+      edges.forEach(([a, b]) => {
+        const from = nodes.find(n => n.id === a), to = nodes.find(n => n.id === b);
+        if (!from || !to) return;
+        const p1 = getNodePos(from), p2 = getNodePos(to);
+        const active = hoveredNode === a || hoveredNode === b || selectedNode === a || selectedNode === b;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = active ? (from.color + 'cc') : (isDark() ? '#33415588' : '#cbd5e188');
+        ctx.lineWidth = active ? 2.5 : 1.5;
+        ctx.setLineDash(active ? [] : [5, 5]);
+        ctx.stroke();
+      });
+      ctx.setLineDash([]);
+    }
+
+    function drawNode(node) {
+      const pos = getNodePos(node);
+      const active = hoveredNode === node.id || selectedNode === node.id;
+      const radius = active ? 32 : 26;
+
+      if (active) {
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, radius + 10, 0, Math.PI * 2);
+        const g = ctx.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, radius + 20);
+        g.addColorStop(0, node.color + '55');
+        g.addColorStop(1, node.color + '00');
+        ctx.fillStyle = g;
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = node.color;
+      ctx.fill();
+
+      if (selectedNode === node.id) {
+        const pulse = (Math.sin(Date.now() / 300) + 1) / 2;
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, radius + 8 + pulse * 6, 0, Math.PI * 2);
+        ctx.strokeStyle = node.color + '70';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '600 11px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      // Wrap long labels
+      const words = node.label.split(' ');
+      if (words.length > 1 && node.label.length > 12) {
+        const mid = Math.ceil(words.length / 2);
+        ctx.fillText(words.slice(0, mid).join(' '), pos.x, pos.y - 7);
+        ctx.fillText(words.slice(mid).join(' '), pos.x, pos.y + 7);
+      } else {
+        ctx.fillText(node.label, pos.x, pos.y);
+      }
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+      drawEdges();
+      nodes.forEach(drawNode);
+    }
+
+    function animate() {
+      render();
+      animationId = requestAnimationFrame(animate);
+    }
+
+    function getNodeAt(x, y) {
+      return nodes.find(n => {
+        const p = getNodePos(n);
+        return (x - p.x) ** 2 + (y - p.y) ** 2 <= 38 * 38;
+      }) || null;
+    }
+
+    function showTooltip(node, cx, cy) {
+      tooltip.innerHTML = `
+        <div class="constellation-tooltip-title" style="color:${node.color};">
+          <span style="width:10px;height:10px;border-radius:50%;background:${node.color};display:inline-block;"></span>
+          ${node.label} <span style="font-size:10px;color:#94a3b8;font-weight:400;">· ${categoryMap[node.id]}</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;max-width:280px;">
+          ${node.skills.map(s => `<span style="font-size:11px;padding:2px 8px;border-radius:9999px;background:#f1f5f9;color:#475569;">${s}</span>`).join('')}
+        </div>`;
+      tooltip.style.opacity = '1';
+      tooltip.style.left = cx + 'px';
+      tooltip.style.top = cy + 'px';
+    }
+
+    function hideTooltip() { tooltip.style.opacity = '0'; }
+    function hidePanel() {
+      selectedNode = null;
+      panel.style.opacity = '0';
+      panel.style.transform = 'translate(-50%, 16px)';
+      panel.style.pointerEvents = 'none';
+    }
+
+    function showPanel(node) {
+      selectedNode = node.id;
+      hideTooltip();
+      panel.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid ${isDark() ? '#334155' : '#e5e7eb'};">
+          <div style="font-weight:700;font-size:15px;color:${node.color};display:flex;align-items:center;gap:8px;">
+            <span style="width:12px;height:12px;border-radius:50%;background:${node.color};display:inline-block;"></span>
+            ${node.label}
+            <span style="font-size:11px;color:#94a3b8;font-weight:400;">${categoryMap[node.id]} · ${node.skills.length} skills</span>
+          </div>
+          <button id="panel-close-btn" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;line-height:1;">&times;</button>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          ${node.skills.map(s => `<span style="font-size:12px;padding:4px 10px;border-radius:9999px;background:${isDark() ? '#334155' : '#f1f5f9'};color:${isDark() ? '#cbd5e1' : '#475569'};">${s}</span>`).join('')}
+        </div>`;
+      panel.querySelector('#panel-close-btn').addEventListener('click', hidePanel);
+      panel.style.opacity = '1';
+      panel.style.transform = 'translate(-50%, 0)';
+      panel.style.pointerEvents = 'auto';
+    }
+
+    function renderLegend() {
+      const cats = [['Computational', '#0d9488'], ['Wet Lab', '#f59e0b'], ['Engineering', '#ec4899'], ['Analysis', '#6366f1'], ['Systems', '#06b6d4']];
+      legend.innerHTML = cats.map(([c, col]) =>
+        `<div style="display:flex;align-items:center;gap:6px;font-size:13px;color:${isDark() ? '#94a3b8' : '#64748b'};padding:4px 12px;border-radius:9999px;background:${isDark() ? '#1e293b' : '#f8fafc'};border:1px solid ${isDark() ? '#334155' : '#e2e8f0'};">
+          <span style="width:10px;height:10px;border-radius:50%;background:${col};"></span>${c}
+        </div>`).join('');
+    }
+
+    function init() {
+      resize();
+      renderLegend();
+      window.addEventListener('resize', resize);
+
+      canvas.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top;
+        const node = getNodeAt(x, y);
+        if (node && !selectedNode) {
+          hoveredNode = node.id;
+          canvas.style.cursor = 'pointer';
+          showTooltip(node, e.clientX, e.clientY - 10);
+        } else if (!node && !selectedNode) {
+          hoveredNode = null;
+          canvas.style.cursor = 'default';
+          hideTooltip();
+        }
+      });
+
+      canvas.addEventListener('click', e => {
+        const rect = canvas.getBoundingClientRect();
+        const node = getNodeAt(e.clientX - rect.left, e.clientY - rect.top);
+        if (node) {
+          if (selectedNode === node.id) hidePanel(); else showPanel(node);
+        } else {
+          hidePanel();
+        }
+      });
+
+      canvas.addEventListener('mouseleave', () => {
+        if (!selectedNode) { hoveredNode = null; hideTooltip(); }
+      });
+
+      animate();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
