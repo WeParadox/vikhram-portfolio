@@ -50,17 +50,17 @@ const highlights = [
         Research <span class="text-gradient">Highlights</span>
       </h2>
     </div>
-    <div class="flex flex-col items-center gap-5 max-w-xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-5 max-w-3xl mx-auto">
       {highlights.map((h, i) => (
         <a 
           href={h.href}
-          class={`reveal card-hover w-full p-6 rounded-2xl border flex items-center gap-5 transition-all duration-300 hover:shadow-xl ${h.color === 'primary' ? 'border-primary/20 bg-primary/5 dark:bg-primary/10 hover:border-primary/40' : 'border-accent/20 bg-accent/5 dark:bg-accent/10 hover:border-accent/40'}`}
+          class={`reveal card-hover p-6 rounded-2xl border flex items-start gap-5 transition-all duration-300 hover:shadow-xl ${h.color === 'primary' ? 'border-primary/20 bg-primary/5 dark:bg-primary/10 hover:border-primary/40' : 'border-accent/20 bg-accent/5 dark:bg-accent/10 hover:border-accent/40'}`}
           style={`animation-delay: ${i * 0.08}s`}
         >
-          <div class={`w-14 h-14 rounded-xl flex items-center justify-center shrink-0 ${h.color === 'primary' ? 'bg-primary text-white' : 'bg-accent text-white'}`}>
-            <i class={`bi ${h.icon} text-2xl`}></i>
+          <div class={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${h.color === 'primary' ? 'bg-primary text-white' : 'bg-accent text-white'}`}>
+            <i class={`bi ${h.icon} text-xl`}></i>
           </div>
-          <div class="flex-1 text-left">
+          <div class="flex-1 min-w-0">
             <div class={`text-xs font-bold uppercase tracking-wider mb-1 ${h.color === 'primary' ? 'text-primary dark:text-primary-light' : 'text-accent dark:text-accent-light'}`}>
               {h.label}
             </div>

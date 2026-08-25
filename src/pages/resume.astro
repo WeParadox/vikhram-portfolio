@@ -6,25 +6,52 @@ const base = '/vikhram';
 
 const experiences = [
   {
+    period: 'Jun 2026 - Present',
+    role: 'Junior Research Fellow (JRF)',
+    org: 'Amrita School of Nanosciences and Molecular Medicine (ASNSMM)',
+    location: 'Kochi, India',
+    bullets: [
+      'ANRF-funded PhD project under Dr. Lalitha Biswas: "Evaluating the Clinical Utility of Metagenomic Cell-Free DNA Sequencing for Early and Accurate Sepsis Detection in Liver Transplant Recipients"',
+      'cfDNA extraction & library prep optimization from liver transplant recipient plasma samples',
+      'Host depletion pipeline (Bowtie2/GRCh38) + pathogen identification (KMA + ResFinder/CARD databases)',
+      'AMR gene & point mutation profiling for antimicrobial resistance characterization',
+      'Clinical cohort management: liver transplant recipients with suspected sepsis',
+      'Developing rapid <24h reporting pipeline for clinical decision support and LIMS integration'
+    ],
+  },
+  {
     period: 'Feb 2026 - Present',
     role: 'Volunteer',
     org: 'NextGen Biology Newsletter',
     location: 'Visakhapatnam · Remote',
-    description: 'Dynamic support, content editing and proofreading for a biology-focused newsletter.',
+    bullets: [
+      'Content editing, proofreading, and editorial management for biology-focused newsletter',
+      'Curated research summaries across immunology, nanotechnology, and clinical genomics',
+      'Collaborated with editorial team on content strategy and audience engagement'
+    ],
   },
   {
     period: 'Feb 2024 - Jul 2024',
     role: 'Intern',
     org: 'Sri Projects',
     location: 'Chennai · On-Site',
-    description: 'Biogas yields of various substrates, VBA Macros involving various conditions/real-time scenarios from field data, Biogas Output Mass Balance Calculations for Biogas Plants. Basics of AFT Fathom for fluid dynamics analysis. Stress Analysis for Bio-related plants using CAESAR II.',
+    bullets: [
+      'Biogas yield calculations for diverse substrates using custom VBA macros',
+      'Biogas Output Mass Balance Calculations for biogas plant design',
+      'Fluid dynamics analysis using AFT Fathom for pipeline systems',
+      'Stress analysis of bio-related plant piping using CAESAR II'
+    ],
   },
   {
     period: 'Feb 2024 - Jul 2024',
     role: 'Virtual Intern',
     org: 'NyBerMan Bioinformatics',
     location: 'Orleans, France · Remote',
-    description: 'Analyzing data from COSMIC database for Breast cancer mutations. Molecular Docking to identify suitable drugs effective against specific mutations.',
+    bullets: [
+      'COSMIC database analysis for breast cancer mutation profiling',
+      'Molecular docking studies to identify drugs targeting specific mutations',
+      'Bioinformatics pipeline development using PyMOL, Discovery Studio, and AutoDock'
+    ],
   },
 ];
 
@@ -36,7 +63,15 @@ const education = [
     school: 'Amrita School of Nanosciences and Molecular Medicine',
     location: 'Kochi, India',
     gpa: '9.48/10',
-    description: 'Focused on nanomedicine, biomaterials, targeted drug delivery systems, polymer synthesis and characterization.',
+    thesis: 'A Novel Non-Viral Gene Vector: PBAE based Core-Shell Nanoparticle System for Gene Delivery',
+    courses: ['Nanomedicine', 'Biomaterials', 'Targeted Drug Delivery', 'Polymer Synthesis & Characterization'],
+    bullets: [
+      'Thesis: "A Novel Non-Viral Gene Vector: PBAE based Core-Shell Nanoparticle System for Gene Delivery"',
+      'Focused on nanomedicine, biomaterials, and targeted drug delivery systems',
+      'Hands-on experience in polymer synthesis, characterization (DLS, ZETA, SEM, FTIR)',
+      'Core-shell nanoparticle design, cell culture, GFP-transfection studies',
+      'Ranked 2nd in Nanobiotechnology Department'
+    ],
   },
   {
     period: 'Dec 2024 - May 2026',
@@ -45,7 +80,13 @@ const education = [
     school: 'University of Arizona, College of Medicine',
     location: 'Tucson, USA',
     gpa: '4/4',
-    description: 'Advanced concepts in immune system function, host-pathogen interactions, and translational immunology.',
+    thesis: 'Immunobiology of Host-Pathogen Interactions',
+    courses: ['Advanced Immunology', 'Translational Immunology', 'Host-Pathogen Interactions', 'Cancer Immunotherapy'],
+    bullets: [
+      'Focused on immune system function, host-pathogen interactions, translational immunology',
+      'Advanced coursework in cancer immunotherapy and vaccine development',
+      'GPA: 4.0/4.0 - Dean\'s List'
+    ],
   },
   {
     period: 'Jul 2020 - Jun 2024',
@@ -54,60 +95,14 @@ const education = [
     school: 'Saveetha Institute of Medical and Technical Sciences',
     location: 'Chennai, India',
     gpa: '9/10',
-    description: 'Comprehensive curriculum covering molecular biology, immunology, and bioprocess engineering. Best Outgoing Student 2024.',
-  },
-];
-
-const skillGroups = [
-  {
-    title: 'Characterization',
-    icon: 'bi-search',
-    skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR'],
-  },
-  {
-    title: 'Bioinformatics',
-    icon: 'bi-cpu',
-    skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux'],
-  },
-  {
-    title: 'Polymer Chemistry',
-    icon: 'bi-droplet',
-    skills: ['Linear Polymer Synthesis', 'Carothers Equation'],
-  },
-  {
-    title: 'Gene Delivery',
-    icon: 'bi-diagram-3',
-    skills: ['Polyplex Systems', 'Core-Shell Systems'],
-  },
-  {
-    title: 'Molecular Biology',
-    icon: 'bi-water',
-    skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'TLC', 'SDS PAGE', 'ELISA', 'ROS/Toxicity Assays'],
-  },
-  {
-    title: 'Cell Culture',
-    icon: 'bi-grid',
-    skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays'],
-  },
-  {
-    title: 'Statistical / Data',
-    icon: 'bi-bar-chart',
-    skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau'],
-  },
-  {
-    title: 'Industrial Biotech',
-    icon: 'bi-gear',
-    skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II'],
-  },
-  {
-    title: 'Documentation',
-    icon: 'bi-file-text',
-    skills: ['MS Office Suite', 'LaTeX', 'Markdown', 'VBA Macros'],
-  },
-  {
-    title: 'Metagenomics',
-    icon: 'bi-diagram-3',
-    skills: ['cfDNA Analysis', 'Pathogen Identification', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker'],
+    thesis: 'Examining the Therapeutic Effects of Camphene Conjugated with Zinc Oxide Nanoparticles on Zebrafish Larvae',
+    courses: ['Molecular Biology', 'Immunology', 'Bioprocess Engineering', 'Genetic Engineering'],
+    bullets: [
+      'Thesis: "Examining the Therapeutic Effects of Camphene Conjugated with Zinc Oxide Nanoparticles on Zebrafish Larvae" - Published in BioNanoScience (8 citations)',
+      'Developmental toxicity, neurotoxicity, ROS enhancement (GPx/GST), lipid peroxidation (DCFH-DA)',
+      'Best Outgoing Student 2024 - First mark in Plant Biotechnology and Molecular Biology',
+      'Comprehensive curriculum: molecular biology, immunology, bioprocess engineering'
+    ],
   },
 ];
 
@@ -169,7 +164,7 @@ const conferences = [
 
 const awards = [
   { title: 'GATE Biotechnology 2026 - Qualified', org: 'IIT Guwahati', date: 'Mar 2026' },
-  { title: 'Institute Scholarship', org: 'ASNSMM, Amrita Vishwa Vidyapeetham', date: 'Jul 2024 - Present', detail: '2nd Rank Holder of Nanobiotechnology Department' },
+  { title: 'Institute Scholarship', org: 'ASNSMM, Amrita Vishwa Vidyapeetham', date: 'Jul 2024 - Jul 2026', detail: '2nd Rank Holder of Nanobiotechnology Department' },
   { title: 'Best Outgoing Student', org: 'SSE, SIMATS University', date: 'Nov 2024', detail: 'Best Outgoing Student of 2024 Batch, First mark in Plant Biotechnology and Molecular Biology' },
 ];
 
@@ -217,8 +212,15 @@ const chess = [
                     <div class="text-sm text-gray-400 dark:text-gray-500">{exp.location}</div>
                   </div>
                 </div>
-                <div class="flex-1 text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {exp.description}
+                <div class="flex-1">
+                  <ul class="space-y-2">
+                    {exp.bullets.map((bullet, bi) => (
+                      <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        <i class="bi bi-check-circle-fill text-primary dark:text-primary-light text-xs mt-1 shrink-0"></i>
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -227,7 +229,7 @@ const chess = [
       </section>
 
       <!-- Education -->
-      <section class="mb-16">
+      <section class="mb-16" id="education">
         <div class="flex items-center gap-3 mb-8">
           <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
             <i class="bi bi-mortarboard text-white"></i>
@@ -248,8 +250,31 @@ const chess = [
                     {edu.gpa && <div class="text-sm font-bold text-primary dark:text-primary-light mt-1">{edu.gpa}</div>}
                   </div>
                 </div>
-                <div class="flex-1 text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {edu.description}
+                <div class="flex-1">
+                  {edu.thesis && (
+                    <div class="mb-3 p-3 bg-gray-50 dark:bg-dark-bg rounded-lg">
+                      <div class="text-xs font-bold uppercase tracking-wider text-primary dark:text-primary-light mb-1">Thesis</div>
+                      <div class="text-sm text-gray-700 dark:text-gray-300 italic">"{edu.thesis}"</div>
+                    </div>
+                  )}
+                  {edu.courses && (
+                    <div class="mb-3">
+                      <div class="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">Key Coursework</div>
+                      <div class="flex flex-wrap gap-1.5">
+                        {edu.courses.map(course => (
+                          <span class="px-2 py-1 rounded bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-xs">{course}</span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <ul class="space-y-2">
+                    {edu.bullets.map((bullet, bi) => (
+                      <li class="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        <i class="bi bi-check-circle-fill text-primary dark:text-primary-light text-xs mt-1 shrink-0"></i>
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -265,18 +290,55 @@ const chess = [
           </div>
           <h2 class="text-2xl font-extrabold">Technical Skills</h2>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {skillGroups.map((group, i) => (
-            <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border group" style={`animation-delay: ${i * 0.05}s`}>
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
-                  <i class={`bi ${group.icon} text-primary dark:text-primary-light group-hover:text-white`}></i>
+        <div class="space-y-6">
+          {[
+            {
+              category: 'Wet Lab & Characterization',
+              icon: 'bi-droplet',
+              groups: [
+                { title: 'Molecular Biology', skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'SDS PAGE', 'ELISA', 'TLC', 'ROS/Toxicity Assays'] },
+                { title: 'Cell Culture', skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays'] },
+                { title: 'Characterization', skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR'] },
+                { title: 'Zebrafish Model', skills: ['Developmental Toxicity', 'Neurobehavior Analysis', 'GPx/GST Assays', 'DCFH-DA Staining'] },
+              ]
+            },
+            {
+              category: 'Computational & Bioinformatics',
+              icon: 'bi-cpu',
+              groups: [
+                { title: 'Metagenomics', skills: ['cfDNA Analysis', 'Pathogen ID', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker'] },
+                { title: 'Bioinformatics', skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux'] },
+                { title: 'Data Analysis', skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau'] },
+              ]
+            },
+            {
+              category: 'Engineering & Documentation',
+              icon: 'bi-gear',
+              groups: [
+                { title: 'Gene Delivery', skills: ['Polyplex Systems', 'Core-Shell Nanoparticles', 'PBAE Synthesis'] },
+                { title: 'Polymer Chemistry', skills: ['Linear Polymer Synthesis', 'Carothers Equation'] },
+                { title: 'Industrial Biotech', skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II'] },
+                { title: 'Documentation', skills: ['MS Office', 'LaTeX', 'Markdown', 'VBA Macros'] },
+              ]
+            },
+          ].map((cat, ci) => (
+            <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border" style={{animationDelay: `${ci * 0.1}s`}}>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center">
+                  <i class={`bi ${cat.icon} text-xl text-primary dark:text-primary-light`}></i>
                 </div>
-                <h3 class="font-bold text-sm">{group.title}</h3>
+                <h3 class="font-bold text-lg">{cat.category}</h3>
               </div>
-              <div class="flex flex-wrap gap-1.5">
-                {group.skills.map(skill => (
-                  <span class="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-dark-bg text-xs text-gray-600 dark:text-gray-400">{skill}</span>
+              <div class="space-y-3">
+                {cat.groups.map((group, gi) => (
+                  <div class="p-3 bg-gray-50 dark:bg-dark-bg rounded-xl">
+                    <div class="font-semibold text-sm text-gray-700 dark:text-gray-300 mb-2">{group.title}</div>
+                    <div class="flex flex-wrap gap-1.5">
+                      {group.skills.map(skill => (
+                        <span class="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-dark-bg text-xs text-gray-600 dark:text-gray-400">{skill}</span>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -359,7 +421,7 @@ const chess = [
       </section>
 
 <!-- Publications -->
-      <section class="mb-16">
+      <section class="mb-16" id="publications">
         <div class="flex items-center gap-3 mb-8">
           <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
             <i class="bi bi-journal-richtext text-white"></i>
@@ -391,7 +453,7 @@ const chess = [
       </section>
 
       <!-- Awards -->
-      <section class="mb-16">
+      <section class="mb-16" id="awards">
         <div class="flex items-center gap-3 mb-8">
           <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
             <i class="bi bi-trophy text-white"></i>
