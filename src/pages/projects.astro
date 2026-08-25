@@ -34,17 +34,15 @@ const projects = [
     description: 'Non-electrode-based IoT module for detecting dissolved ammonia in aquariums. ESP32 transmits data for remote monitoring. Custom 3D-printed housing designed for the sensor.',
     tags: ['ESP32', 'IoT', '3D Printing'],
     category: 'Hardware / IoT',
-    badge: 'Patented',
     github: 'https://github.com/WeParadox',
-    features: ['Non-electrode detection', 'ESP32 WiFi transmission', 'Custom 3D-printed housing', 'Institutional patent'],
+    features: ['Non-electrode detection', 'ESP32 WiFi transmission', 'Custom 3D-printed housing'],
   },
   {
     title: 'Clin Mist',
     description: 'Novel surface disinfectant using antimicrobial properties of terpinen-4-ol extracted from Green tea, creating a natural alternative to sodium hypochlorite.',
     tags: ['Chemistry', 'Product Development'],
     category: 'Research',
-    badge: 'Patented',
-    features: ['Natural antimicrobial', 'Terpinen-4-ol from Green tea', 'Institutional patent', 'YUKTI Innovation challenge'],
+    features: ['Natural antimicrobial', 'Terpinen-4-ol from Green tea', 'YUKTI Innovation challenge'],
   },
   {
     title: 'Cell Dilution & Seeding Planner',
@@ -219,7 +217,7 @@ const categoryColors: Record<string, string> = {
             <div class="flex items-center justify-between mb-3">
               <span class={`px-2.5 py-1 rounded-lg text-xs font-bold ${categoryColors[project.category] || 'bg-gray-500 text-white'}`}>{project.category}</span>
               {project.badge && (
-                <span class={`px-2.5 py-1 rounded-lg text-xs font-bold ${project.badge === 'Patented' ? 'bg-accent/10 dark:bg-accent/20 text-accent dark:text-accent-light' : 'bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light'}`}>{project.badge}</span>
+                <span class={`px-2.5 py-1 rounded-lg text-xs font-bold ${project.badge === 'Published' ? 'bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light' : 'bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light'}`}>{project.badge}</span>
               )}
             </div>
             <h3 class="text-lg font-extrabold mb-2">{project.title}</h3>
