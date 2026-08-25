@@ -7,10 +7,17 @@ const base = '/vikhram';
 const experiences = [
   {
     period: '2025 - Present',
+    role: 'Junior Research Fellow',
+    org: 'ASNSMM',
+    location: 'Kochi, India',
+    description: 'Developing metagenomic pipelines for early sepsis detection in liver transplant patients using cell-free DNA (cfDNA). Working on clinical metagenomics, pathogen identification, and antimicrobial resistance profiling from transplant specimens.',
+  },
+  {
+    period: '2024',
     role: 'Graduate Researcher',
     org: 'ASNSMM',
     location: 'Kochi, India',
-    description: 'Developing a novel, polymer-based core shell carrier system for gene delivery.',
+    description: 'Developed a novel, polymer-based core shell carrier system for gene delivery. Completed dual Master\'s degrees in Nanobiotechnology and Immunobiology.',
   },
   {
     period: '2024',
@@ -30,20 +37,20 @@ const experiences = [
 
 const education = [
   {
-    period: '2024 - Present',
+    period: '2024 - 2025',
     degree: 'M. S',
     field: 'Immunobiology',
     school: 'University of Arizona',
     location: 'Tucson, USA',
-    description: 'Pursuing a Master of Science in Immunobiology, focusing on advanced concepts in immune system function, host-pathogen interactions, and translational immunology.',
+    description: 'Master of Science in Immunobiology, focusing on immune system function, host-pathogen interactions, and translational immunology.',
   },
   {
-    period: '2024 - Present',
+    period: '2024 - 2025',
     degree: 'M. Tech',
     field: 'Nanobiotechnology',
     school: 'Amrita School of Nanosciences and Molecular Medicine',
     location: 'Kochi, India',
-    description: 'Focusing on nanomedicine, biomaterials, and targeted drug delivery systems. Gaining hands-on experience in polymer synthesis and characterization for biomedical applications.',
+    description: 'Focused on nanomedicine, biomaterials, and targeted drug delivery systems. Hands-on experience in polymer synthesis and characterization for biomedical applications.',
   },
   {
     period: '2020 - 2024',
@@ -51,14 +58,24 @@ const education = [
     field: 'Biotechnology',
     school: 'SIMATS',
     location: 'Chennai, India',
-    description: 'Completed a comprehensive curriculum covering molecular biology, immunology, and bioprocess engineering. Final year project involved toxicity studies on zebrafish. Awarded Best Outgoing Student.',
+    description: 'Comprehensive curriculum covering molecular biology, immunology, and bioprocess engineering. Final year project involved toxicity studies on zebrafish. Awarded Best Outgoing Student.',
   },
 ];
 
 const skillGroups = [
   {
-    title: 'Molecular Biology',
+    title: 'Metagenomics',
     icon: 'bi-diagram-3',
+    skills: ['cfDNA Analysis', 'Pathogen Identification', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Clinical Pipelines'],
+  },
+  {
+    title: 'Bioinformatics',
+    icon: 'bi-cpu',
+    skills: ['CADD', 'Modeller', 'Clustal Omega', 'PyMol', 'Discovery Studio', 'ADMET', 'BLAST', 'Molecular Docking', 'Binding Site Prediction'],
+  },
+  {
+    title: 'Molecular Biology',
+    icon: 'bi-droplet',
     skills: ['DNA & RNA Extraction', 'SDS-PAGE', 'TLC', 'ELISA', 'DPPH & ABTS Assay', 'DCFH-DA Assay'],
   },
   {
@@ -72,11 +89,6 @@ const skillGroups = [
     skills: ['XRD & SEM interpretation', 'UV-Vis Spectrophotometry', 'OriginLab for XRD'],
   },
   {
-    title: 'Bioinformatics',
-    icon: 'bi-cpu',
-    skills: ['CADD', 'Modeller', 'Clustal Omega', 'PyMol', 'Discovery Studio', 'ADMET', 'BLAST', 'Molecular Docking', 'Binding Site Prediction'],
-  },
-  {
     title: 'Industrial Biotech',
     icon: 'bi-gear',
     skills: ['Biogas Mass Balance', 'PFD & P&ID', 'AFT Arrow', 'Caesar II Stress Analysis'],
@@ -87,14 +99,9 @@ const skillGroups = [
     skills: ['SPSS', 'GraphPad Prism', 'OriginLab'],
   },
   {
-    title: 'Linux',
+    title: 'Tools & Platforms',
     icon: 'bi-terminal',
-    skills: ['Command line', 'Shell scripting'],
-  },
-  {
-    title: 'Research Writing',
-    icon: 'bi-pen',
-    skills: ['Published in BioNanoScience', 'Scientific communication'],
+    skills: ['Linux', 'Shell scripting', 'Docker', 'Python', 'GitHub'],
   },
 ];
 
