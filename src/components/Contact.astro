@@ -1,0 +1,31 @@
+---
+const base = '/vikhram';
+const contacts = [
+  { icon: 'bi-envelope-fill', label: 'Email', href: 'mailto:vikhram@example.com', text: 'vikhram@example.com' },
+  { icon: 'bi-linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/ravivikhram', text: 'linkedin.com/in/ravivikhram' },
+  { icon: 'bi-github', label: 'GitHub', href: 'https://github.com/WeParadox', text: 'github.com/WeParadox' },
+];
+---
+
+<section class="py-20 bg-gray-50/50 dark:bg-dark-card/30">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <h2 class="text-3xl md:text-4xl font-extrabold">
+        Get In <span class="text-gradient">Touch</span>
+      </h2>
+      <p class="mt-4 text-gray-600 dark:text-gray-400">Feel free to reach out for collaborations or just a friendly chat.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+      {contacts.map((c, i) => (
+        <a href={c.href} target={c.href.startsWith('mailto') ? undefined : '_blank'} rel="noopener"
+           class={`reveal card-hover p-6 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border text-center group`} style={`animation-delay: ${i * 0.1}s`}>
+          <div class="w-14 h-14 rounded-2xl bg-primary/10 dark:bg-primary/20 flex items-center justify-center mx-auto mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-200">
+            <i class={`bi ${c.icon} text-2xl text-primary dark:text-primary-light group-hover:text-white`}></i>
+          </div>
+          <div class="font-bold text-gray-900 dark:text-gray-100 mb-1">{c.label}</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400 break-all">{c.text}</div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

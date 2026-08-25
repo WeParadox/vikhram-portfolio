@@ -1,0 +1,70 @@
+---
+const base = '/vikhram';
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { label: 'Home', href: `${base}/` },
+  { label: 'Resume', href: `${base}/resume` },
+  { label: 'Projects', href: `${base}/projects` },
+];
+---
+
+<nav class="sticky top-0 z-50 bg-white/80 dark:bg-dark-bg/80 backdrop-blur-xl border-b border-gray-100 dark:border-dark-border">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href={base} class="text-xl font-bold text-primary dark:text-primary-light tracking-tight hover:opacity-80 transition-opacity">
+      Vikhram Ravi
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class={`text-sm font-semibold transition-colors duration-200 ${
+            currentPath === item.href || (item.href === `${base}/` && currentPath === `${base}`)
+              ? 'text-primary dark:text-primary-light'
+              : 'text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light'
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+      <button
+        id="theme-toggle"
+        class="p-2 rounded-xl bg-gray-100 dark:bg-dark-card hover:bg-gray-200 dark:hover:bg-dark-border transition-colors"
+        aria-label="Toggle theme"
+      >
+        <i class="bi bi-moon-fill text-gray-600 dark:text-accent dark:hidden"></i>
+        <i class="bi bi-sun-fill text-accent hidden dark:inline"></i>
+      </button>
+    </div>
+    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl bg-gray-100 dark:bg-dark-card" aria-label="Menu">
+      <i class="bi bi-list text-lg text-gray-600 dark:text-gray-400"></i>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+    {navItems.map(item => (
+      <a href={item.href} class="block py-2 text-sm font-semibold text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light">
+        {item.label}
+      </a>
+    ))}
+    <button id="theme-toggle-mobile" class="mt-2 p-2 rounded-xl bg-gray-100 dark:bg-dark-card w-full text-left text-sm font-semibold text-gray-600 dark:text-gray-400">
+      <i class="bi bi-moon-fill mr-2 dark:hidden"></i>
+      <i class="bi bi-sun-fill mr-2 hidden dark:inline"></i>
+      Toggle Theme
+    </button>
+  </div>
+</nav>
+
+<script is:inline>
+  function setupThemeToggle() {
+    const toggle = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      window.__setTheme(isDark ? 'light' : 'dark');
+    };
+    document.getElementById('theme-toggle')?.addEventListener('click', toggle);
+    document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggle);
+
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
+  }
+  setupThemeToggle();
+</script>

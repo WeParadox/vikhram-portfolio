@@ -1,0 +1,233 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+const base = '/vikhram';
+
+const experiences = [
+  {
+    period: '2025 - Present',
+    role: 'Graduate Researcher',
+    org: 'ASNSMM',
+    location: 'Kochi, India',
+    description: 'Developing a novel, polymer-based core shell carrier system for gene delivery.',
+  },
+  {
+    period: '2024',
+    role: 'Intern',
+    org: 'SRI Projects',
+    location: 'Chennai, India',
+    description: 'Performed bioprocess analysis for bio-plants, including biogas yield calculations using custom VBA macros, stress analysis of piping systems using CAESAR II.',
+  },
+  {
+    period: '2023',
+    role: 'Virtual Intern',
+    org: 'NyBerMan Bioinformatics Europe',
+    location: 'Orleans, France · Remote',
+    description: 'Understanding the genes responsible for Breast Cancer, listing the viable drugs for treating predominant mutations using molecular docking techniques.',
+  },
+];
+
+const education = [
+  {
+    period: '2024 - Present',
+    degree: 'M. S',
+    field: 'Immunobiology',
+    school: 'University of Arizona',
+    location: 'Tucson, USA',
+    description: 'Pursuing a Master of Science in Immunobiology, focusing on advanced concepts in immune system function, host-pathogen interactions, and translational immunology.',
+  },
+  {
+    period: '2024 - Present',
+    degree: 'M. Tech',
+    field: 'Nanobiotechnology',
+    school: 'Amrita School of Nanosciences and Molecular Medicine',
+    location: 'Kochi, India',
+    description: 'Focusing on nanomedicine, biomaterials, and targeted drug delivery systems. Gaining hands-on experience in polymer synthesis and characterization for biomedical applications.',
+  },
+  {
+    period: '2020 - 2024',
+    degree: 'B. Tech',
+    field: 'Biotechnology',
+    school: 'SIMATS',
+    location: 'Chennai, India',
+    description: 'Completed a comprehensive curriculum covering molecular biology, immunology, and bioprocess engineering. Final year project involved toxicity studies on zebrafish. Awarded Best Outgoing Student.',
+  },
+];
+
+const skillGroups = [
+  {
+    title: 'Molecular Biology',
+    icon: 'bi-diagram-3',
+    skills: ['DNA & RNA Extraction', 'SDS-PAGE', 'TLC', 'ELISA', 'DPPH & ABTS Assay', 'DCFH-DA Assay'],
+  },
+  {
+    title: 'Zebrafish Model',
+    icon: 'bi-water',
+    skills: ['Toxicology studies', 'Neurobehavior Analysis', 'Developmental Studies'],
+  },
+  {
+    title: 'Characterization',
+    icon: 'bi-search',
+    skills: ['XRD & SEM interpretation', 'UV-Vis Spectrophotometry', 'OriginLab for XRD'],
+  },
+  {
+    title: 'Bioinformatics',
+    icon: 'bi-cpu',
+    skills: ['CADD', 'Modeller', 'Clustal Omega', 'PyMol', 'Discovery Studio', 'ADMET', 'BLAST', 'Molecular Docking', 'Binding Site Prediction'],
+  },
+  {
+    title: 'Industrial Biotech',
+    icon: 'bi-gear',
+    skills: ['Biogas Mass Balance', 'PFD & P&ID', 'AFT Arrow', 'Caesar II Stress Analysis'],
+  },
+  {
+    title: 'Statistical Analysis',
+    icon: 'bi-bar-chart',
+    skills: ['SPSS', 'GraphPad Prism', 'OriginLab'],
+  },
+  {
+    title: 'Linux',
+    icon: 'bi-terminal',
+    skills: ['Command line', 'Shell scripting'],
+  },
+  {
+    title: 'Research Writing',
+    icon: 'bi-pen',
+    skills: ['Published in BioNanoScience', 'Scientific communication'],
+  },
+];
+
+const softSkills = [
+  { title: 'Time Management', icon: 'bi-clock', detail: 'Developed 2 institutional patented products amidst undergraduate coursework.' },
+  { title: 'Conflict Resolution', icon: 'bi-people', detail: 'Collaborative problem-solving in multidisciplinary teams.' },
+  { title: 'Flexible & Adaptive', icon: 'bi-arrow-repeat', detail: 'Quick learner bridging multiple scientific fields.' },
+];
+---
+
+<Layout title="Vikhram Ravi - Resume">
+  <Nav />
+  <main class="flex-1">
+    <div class="max-w-5xl mx-auto px-6 py-16">
+      <!-- Header -->
+      <div class="text-center mb-16 reveal">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+          <span class="text-gradient">Resume</span>
+        </h1>
+        <a href={`${base}/assets/Vikhram_R_CV.pdf`} target="_blank"
+           class="inline-flex items-center gap-2 px-6 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-2xl transition-all duration-200 hover:shadow-lg hover:shadow-primary/20">
+          <i class="bi bi-download"></i>
+          Download CV
+        </a>
+      </div>
+
+      <!-- Experience -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+            <i class="bi bi-briefcase text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Experience</h2>
+        </div>
+        <div class="space-y-6">
+          {experiences.map((exp, i) => (
+            <div class="reveal card-hover p-6 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border" style={`animation-delay: ${i * 0.1}s`}>
+              <div class="flex flex-col md:flex-row gap-6">
+                <div class="md:w-48 shrink-0">
+                  <div class="bg-gray-50 dark:bg-dark-bg rounded-xl p-4 text-center md:text-left">
+                    <div class="text-primary dark:text-primary-light font-bold text-sm">{exp.period}</div>
+                    <div class="font-bold mt-2">{exp.role}</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">{exp.org}</div>
+                    <div class="text-sm text-gray-400 dark:text-gray-500">{exp.location}</div>
+                  </div>
+                </div>
+                <div class="flex-1 text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {exp.description}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
+            <i class="bi bi-mortarboard text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Education</h2>
+        </div>
+        <div class="space-y-6">
+          {education.map((edu, i) => (
+            <div class="reveal card-hover p-6 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border" style={`animation-delay: ${i * 0.1}s`}>
+              <div class="flex flex-col md:flex-row gap-6">
+                <div class="md:w-48 shrink-0">
+                  <div class="bg-gray-50 dark:bg-dark-bg rounded-xl p-4 text-center md:text-left">
+                    <div class="text-accent dark:text-accent-light font-bold text-sm">{edu.period}</div>
+                    <div class="font-bold mt-2">{edu.degree}</div>
+                    <div class="text-sm italic text-gray-500 dark:text-gray-400">{edu.field}</div>
+                    <div class="text-sm font-medium mt-1">{edu.school}</div>
+                    <div class="text-sm text-gray-400 dark:text-gray-500">{edu.location}</div>
+                  </div>
+                </div>
+                <div class="flex-1 text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {edu.description}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Technical Skills -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+            <i class="bi bi-tools text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Technical Skills</h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {skillGroups.map((group, i) => (
+            <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border group" style={`animation-delay: ${i * 0.05}s`}>
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                  <i class={`bi ${group.icon} text-primary dark:text-primary-light group-hover:text-white`}></i>
+                </div>
+                <h3 class="font-bold text-sm">{group.title}</h3>
+              </div>
+              <div class="flex flex-wrap gap-1.5">
+                {group.skills.map(skill => (
+                  <span class="px-2.5 py-1 rounded-lg bg-gray-100 dark:bg-dark-bg text-xs text-gray-600 dark:text-gray-400">{skill}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Soft Skills -->
+      <section>
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
+            <i class="bi bi-heart text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Soft Skills</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          {softSkills.map((skill, i) => (
+            <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border text-center" style={`animation-delay: ${i * 0.1}s`}>
+              <div class="w-12 h-12 rounded-2xl bg-accent/10 dark:bg-accent/20 flex items-center justify-center mx-auto mb-3">
+                <i class={`bi ${skill.icon} text-xl text-accent dark:text-accent-light`}></i>
+              </div>
+              <h3 class="font-bold mb-2">{skill.title}</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400">{skill.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>

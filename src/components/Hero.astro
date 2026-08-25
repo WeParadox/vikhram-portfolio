@@ -1,0 +1,71 @@
+---
+const base = '/vikhram';
+---
+
+<section class="relative overflow-hidden py-24 md:py-32">
+  <!-- Animated biology SVG background -->
+  <svg class="absolute inset-0 w-full h-full opacity-[0.04] dark:opacity-[0.06]" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+    <!-- mRNA strand -->
+    <path class="animate-[slideRight_20s_linear_infinite]" d="M-200 300 C 0 260, 400 340, 800 300 C 1000 270, 1200 330, 1400 300" fill="none" stroke="currentColor" stroke-width="3" class="text-primary" />
+    {Array.from({length: 20}, (_, i) => (
+      <circle class="animate-[slideRight_20s_linear_infinite]" cx={-100 + i * 80} cy={300 + Math.sin(i * 0.8) * 20} r={6 + Math.random() * 4} fill="currentColor" style={`animation-delay: ${i * 0.3}s`} class="text-primary" />
+    ))}
+    <!-- Ribosome -->
+    <g class="animate-[floatSlow_12s_ease-in-out_infinite]">
+      <ellipse cx="300" cy="280" rx="50" ry="35" fill="none" stroke="currentColor" stroke-width="2" class="text-primary" />
+      <ellipse cx="300" cy="310" rx="40" ry="25" fill="none" stroke="currentColor" stroke-width="2" class="text-primary" />
+    </g>
+    <!-- tRNA molecules -->
+    <g class="animate-[floatSlow_10s_ease-in-out_infinite]" style="animation-delay: -3s">
+      <path d="M600 260 L630 240 L660 260 L650 270 L630 255 L610 270 Z" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary" />
+      <circle cx="630" cy="280" r="8" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary" />
+    </g>
+    <g class="animate-[floatSlow_14s_ease-in-out_infinite]" style="animation-delay: -7s">
+      <path d="M900 320 L930 300 L960 320 L950 330 L930 315 L910 330 Z" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary" />
+      <circle cx="930" cy="340" r="8" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary" />
+    </g>
+    <!-- DNA double helix hint -->
+    <g class="animate-[floatSlow_16s_ease-in-out_infinite]" style="animation-delay: -5s">
+      <path d="M100 150 Q 150 120, 200 150 Q 250 180, 300 150" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary" />
+      <path d="M100 170 Q 150 200, 200 170 Q 250 140, 300 170" fill="none" stroke="currentColor" stroke-width="1.5" class="text-primary" />
+    </g>
+  </svg>
+
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    <div class="text-center max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-sm font-semibold mb-8 animate-fade-in">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        Interdisciplinary Researcher
+      </div>
+
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-in" style="animation-delay: 0.1s">
+        Bridging the Gap Between
+        <span class="text-gradient block mt-2">Biology & Materials Science</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in" style="animation-delay: 0.2s">
+        A passionate researcher with an interdisciplinary skill set spanning Immunobiology, Nanotechnology, and Microfluidics. Currently pursuing a dual Master's degree.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style="animation-delay: 0.3s">
+        <a href={`${base}/resume`} class="px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-2xl transition-all duration-200 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5">
+          View Resume
+        </a>
+        <a href={`${base}/projects`} class="px-8 py-4 border-2 border-gray-200 dark:border-dark-border hover:border-primary dark:hover:border-primary text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light font-bold rounded-2xl transition-all duration-200 hover:-translate-y-0.5">
+          Explore Projects
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes slideRight {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(100px); }
+  }
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+  }
+</style>
