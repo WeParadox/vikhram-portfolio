@@ -6,109 +6,166 @@ const base = '/vikhram';
 
 const experiences = [
   {
-    period: '2025 - Present',
-    role: 'Junior Research Fellow',
-    org: 'ASNSMM',
-    location: 'Kochi, India',
-    description: 'Developing metagenomic pipelines for early sepsis detection in liver transplant patients using cell-free DNA (cfDNA). Working on clinical metagenomics, pathogen identification, and antimicrobial resistance profiling from transplant specimens.',
+    period: 'Feb 2026 - Present',
+    role: 'Volunteer',
+    org: 'NextGen Biology Newsletter',
+    location: 'Visakhapatnam · Remote',
+    description: 'Dynamic support, content editing and proofreading for a biology-focused newsletter.',
   },
   {
-    period: '2024',
-    role: 'Graduate Researcher',
-    org: 'ASNSMM',
-    location: 'Kochi, India',
-    description: 'Developed a novel, polymer-based core shell carrier system for gene delivery. Completed dual Master\'s degrees in Nanobiotechnology and Immunobiology.',
-  },
-  {
-    period: '2024',
+    period: 'Feb 2024 - Jul 2024',
     role: 'Intern',
-    org: 'SRI Projects',
-    location: 'Chennai, India',
-    description: 'Performed bioprocess analysis for bio-plants, including biogas yield calculations using custom VBA macros, stress analysis of piping systems using CAESAR II.',
+    org: 'Sri Projects',
+    location: 'Chennai · On-Site',
+    description: 'Biogas yields of various substrates, VBA Macros involving various conditions/real-time scenarios from field data, Biogas Output Mass Balance Calculations for Biogas Plants. Basics of AFT Fathom for fluid dynamics analysis. Stress Analysis for Bio-related plants using CAESAR II.',
   },
   {
-    period: '2023',
+    period: 'Feb 2024 - Jul 2024',
     role: 'Virtual Intern',
-    org: 'NyBerMan Bioinformatics Europe',
+    org: 'NyBerMan Bioinformatics',
     location: 'Orleans, France · Remote',
-    description: 'Understanding the genes responsible for Breast Cancer, listing the viable drugs for treating predominant mutations using molecular docking techniques.',
+    description: 'Analyzing data from COSMIC database for Breast cancer mutations. Molecular Docking to identify suitable drugs effective against specific mutations.',
   },
 ];
 
 const education = [
   {
-    period: '2024 - 2025',
-    degree: 'M. S',
-    field: 'Immunobiology',
-    school: 'University of Arizona',
-    location: 'Tucson, USA',
-    description: 'Master of Science in Immunobiology, focusing on immune system function, host-pathogen interactions, and translational immunology.',
-  },
-  {
-    period: '2024 - 2025',
+    period: 'Aug 2024 - Jul 2026',
     degree: 'M. Tech',
     field: 'Nanobiotechnology',
     school: 'Amrita School of Nanosciences and Molecular Medicine',
     location: 'Kochi, India',
-    description: 'Focused on nanomedicine, biomaterials, and targeted drug delivery systems. Hands-on experience in polymer synthesis and characterization for biomedical applications.',
+    gpa: '9.48/10',
+    description: 'Focused on nanomedicine, biomaterials, targeted drug delivery systems, polymer synthesis and characterization.',
   },
   {
-    period: '2020 - 2024',
+    period: 'Dec 2024 - May 2026',
+    degree: 'M. S',
+    field: 'Immunobiology',
+    school: 'University of Arizona, College of Medicine',
+    location: 'Tucson, USA',
+    gpa: '4/4',
+    description: 'Advanced concepts in immune system function, host-pathogen interactions, and translational immunology.',
+  },
+  {
+    period: 'Jul 2020 - Jun 2024',
     degree: 'B. Tech',
     field: 'Biotechnology',
-    school: 'SIMATS',
+    school: 'Saveetha Institute of Medical and Technical Sciences',
     location: 'Chennai, India',
-    description: 'Comprehensive curriculum covering molecular biology, immunology, and bioprocess engineering. Final year project involved toxicity studies on zebrafish. Awarded Best Outgoing Student.',
+    gpa: '9/10',
+    description: 'Comprehensive curriculum covering molecular biology, immunology, and bioprocess engineering. Best Outgoing Student 2024.',
   },
 ];
 
 const skillGroups = [
   {
-    title: 'Metagenomics',
-    icon: 'bi-diagram-3',
-    skills: ['cfDNA Analysis', 'Pathogen Identification', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Clinical Pipelines'],
+    title: 'Characterization',
+    icon: 'bi-search',
+    skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR'],
   },
   {
     title: 'Bioinformatics',
     icon: 'bi-cpu',
-    skills: ['CADD', 'Modeller', 'Clustal Omega', 'PyMol', 'Discovery Studio', 'ADMET', 'BLAST', 'Molecular Docking', 'Binding Site Prediction'],
+    skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux'],
+  },
+  {
+    title: 'Polymer Chemistry',
+    icon: 'bi-droplet',
+    skills: ['Linear Polymer Synthesis', 'Carothers Equation'],
+  },
+  {
+    title: 'Gene Delivery',
+    icon: 'bi-diagram-3',
+    skills: ['Polyplex Systems', 'Core-Shell Systems'],
   },
   {
     title: 'Molecular Biology',
-    icon: 'bi-droplet',
-    skills: ['DNA & RNA Extraction', 'SDS-PAGE', 'TLC', 'ELISA', 'DPPH & ABTS Assay', 'DCFH-DA Assay'],
-  },
-  {
-    title: 'Zebrafish Model',
     icon: 'bi-water',
-    skills: ['Toxicology studies', 'Neurobehavior Analysis', 'Developmental Studies'],
+    skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'TLC', 'SDS PAGE', 'ELISA', 'ROS/Toxicity Assays'],
   },
   {
-    title: 'Characterization',
-    icon: 'bi-search',
-    skills: ['XRD & SEM interpretation', 'UV-Vis Spectrophotometry', 'OriginLab for XRD'],
+    title: 'Cell Culture',
+    icon: 'bi-grid',
+    skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays'],
+  },
+  {
+    title: 'Statistical / Data',
+    icon: 'bi-bar-chart',
+    skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau'],
   },
   {
     title: 'Industrial Biotech',
     icon: 'bi-gear',
-    skills: ['Biogas Mass Balance', 'PFD & P&ID', 'AFT Arrow', 'Caesar II Stress Analysis'],
+    skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II'],
   },
   {
-    title: 'Statistical Analysis',
-    icon: 'bi-bar-chart',
-    skills: ['SPSS', 'GraphPad Prism', 'OriginLab'],
+    title: 'Documentation',
+    icon: 'bi-file-text',
+    skills: ['MS Office Suite', 'LaTeX', 'Markdown', 'VBA Macros'],
   },
   {
-    title: 'Tools & Platforms',
-    icon: 'bi-terminal',
-    skills: ['Linux', 'Shell scripting', 'Docker', 'Python', 'GitHub'],
+    title: 'Metagenomics',
+    icon: 'bi-diagram-3',
+    skills: ['cfDNA Analysis', 'Pathogen Identification', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker'],
   },
 ];
 
-const softSkills = [
-  { title: 'Time Management', icon: 'bi-clock', detail: 'Developed 2 institutional patented products amidst undergraduate coursework.' },
-  { title: 'Conflict Resolution', icon: 'bi-people', detail: 'Collaborative problem-solving in multidisciplinary teams.' },
-  { title: 'Flexible & Adaptive', icon: 'bi-arrow-repeat', detail: 'Quick learner bridging multiple scientific fields.' },
+const projects = [
+  {
+    title: "Master's Thesis",
+    period: 'Jun 2025 - Ongoing',
+    description: 'A Novel Non-Viral Gene Vector: PBAE based Core-Shell Nanoparticle System for Gene Delivery',
+    bullets: ['Synthesis of PBAE, Troubleshooting approaches and Optimization', 'Core-shell system design, Cell Culture, GFP-Transfection studies'],
+  },
+  {
+    title: "Bachelor's Thesis",
+    period: 'May 2024',
+    description: 'Examining the Therapeutic effects of Camphene Conjugated with Zinc Oxide Nanoparticles on Zebrafish Larvae',
+    bullets: ['Developmental Toxicity Studies in Zebrafish in-vivo model', 'Neurotoxicity analysis using locomotory parameters', 'ROS Enhancement Levels using GPx and GST parameters', 'Lipid Peroxidation level analysis using DCFH-DA staining'],
+  },
+  {
+    title: 'Ammo Mist',
+    period: 'Oct 2023 - Mar 2024',
+    description: 'Ammonia sensor for Aquariums',
+    bullets: ['IoT module for detecting dissolved ammonia', 'Non-electrode-based detection method', 'Received Institutional Patent'],
+  },
+  {
+    title: 'Clin Mist',
+    period: 'Jul 2022 - Dec 2022',
+    description: 'Natural Surface Disinfectant',
+    bullets: ['Novel disinfectant using terpinen-4-ol from Green tea extract', 'Received Institutional Patent'],
+  },
+];
+
+const courses = [
+  { name: 'Fundamentals in Biotechnology and Genetics', issuer: 'Alison (NPTEL)', date: 'Jun 2024' },
+  { name: 'Google Business Intelligence', issuer: 'Google (Coursera)', date: 'Apr 2024' },
+  { name: 'Drug Discovery', issuer: 'UC San Diego (Coursera)', date: 'Mar 2024' },
+  { name: 'Introduction to the Biology of Cancer', issuer: 'Johns Hopkins University (Coursera)', date: 'Mar 2024', note: 'With Honors' },
+  { name: 'Drug Delivery: Principles and Engineering', issuer: 'IISc Bangalore (NPTEL)', date: 'Oct 2022' },
+];
+
+const conferences = [
+  { name: 'Virtual Winter School on Computational Chemistry, GROMACS', date: 'Jan 2026', detail: 'Training modules led by GROMACS Team for molecular docking simulations' },
+  { name: '8th Indian Myeloma Congress, IMAGe', date: 'Jan 2026', detail: 'Workshop on Flow Cytometry for MRD, Gating strategies, Flow Cytometry vs NGS' },
+  { name: 'Workshop on Electrospinning for Nanofibre Production', date: 'May 2024', detail: 'Sathyabama, Chennai' },
+  { name: '14th International Conference on Science & Innovative Engineering', date: 'Apr 2024', detail: 'Paper Presentation: "Evaluating the Pharmacological Profile of Novel Drug Camphene conjugated with Zinc Oxide Nanoparticles using Zebrafish Larvae model"' },
+  { name: 'Workshop on Biomass Fermentation and Distillation', date: 'May 2024', detail: 'Sathyabama, Chennai' },
+  { name: 'Workshop on Biomimetic Scaffolds Fabrication', date: 'Jun 2021', detail: 'Binghamton University' },
+];
+
+const awards = [
+  { title: 'GATE Biotechnology 2026 - Qualified', org: 'IIT Guwahati', date: 'Mar 2026' },
+  { title: 'Institute Scholarship', org: 'ASNSMM, Amrita Vishwa Vidyapeetham', date: 'Jul 2024 - Present', detail: '2nd Rank Holder of Nanobiotechnology Department' },
+  { title: 'Best Outgoing Student', org: 'SSE, SIMATS University', date: 'Nov 2024', detail: 'Best Outgoing Student of 2024 Batch, First mark in Plant Biotechnology and Molecular Biology' },
+];
+
+const chess = [
+  { title: 'VALOR represented team Zelos, ASNSMM', place: '1st Place', date: 'Mar 2025' },
+  { title: 'SIMAM represented team Samudra, SIMATS', place: '1st Place', date: 'May 2022' },
+  { title: 'CBSE Nationals represented Jawahar Vidyalaya', place: '2nd Runner Up', date: 'Nov 2014' },
+  { title: 'CBSE Zonals represented Jawahar Vidyalaya', place: '1st Runner Up', date: 'Oct 2014' },
 ];
 ---
 
@@ -176,6 +233,7 @@ const softSkills = [
                     <div class="text-sm italic text-gray-500 dark:text-gray-400">{edu.field}</div>
                     <div class="text-sm font-medium mt-1">{edu.school}</div>
                     <div class="text-sm text-gray-400 dark:text-gray-500">{edu.location}</div>
+                    {edu.gpa && <div class="text-sm font-bold text-primary dark:text-primary-light mt-1">{edu.gpa}</div>}
                   </div>
                 </div>
                 <div class="flex-1 text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -195,7 +253,7 @@ const softSkills = [
           </div>
           <h2 class="text-2xl font-extrabold">Technical Skills</h2>
         </div>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {skillGroups.map((group, i) => (
             <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border group" style={`animation-delay: ${i * 0.05}s`}>
               <div class="flex items-center gap-3 mb-3">
@@ -214,6 +272,145 @@ const softSkills = [
         </div>
       </section>
 
+      <!-- Projects -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+            <i class="bi bi-kanban text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Projects</h2>
+        </div>
+        <div class="space-y-6">
+          {projects.map((proj, i) => (
+            <div class="reveal card-hover p-6 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border" style={`animation-delay: ${i * 0.1}s`}>
+              <div class="flex items-start justify-between mb-2">
+                <h3 class="font-bold text-lg">{proj.title}</h3>
+                <span class="text-sm text-primary dark:text-primary-light font-semibold shrink-0 ml-4">{proj.period}</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-3">{proj.description}</p>
+              <ul class="space-y-1">
+                {proj.bullets.map(bullet => (
+                  <li class="flex items-start gap-2 text-sm text-gray-500 dark:text-gray-400">
+                    <i class="bi bi-check-circle-fill text-primary dark:text-primary-light text-xs mt-1 shrink-0"></i>
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Courses & Certifications -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
+            <i class="bi bi-award text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Courses & Certifications</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          {courses.map((course, i) => (
+            <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border" style={`animation-delay: ${i * 0.05}s`}>
+              <div class="font-bold text-sm mb-1">{course.name}</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">{course.issuer}</div>
+              <div class="flex items-center gap-2 mt-2">
+                <span class="text-xs text-primary dark:text-primary-light font-semibold">{course.date}</span>
+                {course.note && <span class="px-2 py-0.5 rounded-full bg-accent/10 text-accent text-xs font-bold">{course.note}</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Conferences & Workshops -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+            <i class="bi bi-mic text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Conferences & Workshops</h2>
+        </div>
+        <div class="space-y-4">
+          {conferences.map((conf, i) => (
+            <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border" style={`animation-delay: ${i * 0.05}s`}>
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="font-bold text-sm">{conf.name}</div>
+                  <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">{conf.detail}</div>
+                </div>
+                <span class="text-xs text-primary dark:text-primary-light font-semibold shrink-0">{conf.date}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Publications -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
+            <i class="bi bi-journal-richtext text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Publications</h2>
+        </div>
+        <div class="reveal card-hover p-6 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <div class="font-bold">Investigating the Protective Effect of Camphene-Conjugated Zinc Oxide Nanoparticles Against Pseudomonas aeruginosa Infection in Danio rerio</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 mt-1">BioNanoScience · Springer · September 2024</div>
+              <div class="text-sm text-primary dark:text-primary-light mt-1">DOI: 10.1007/s12668-024-01561-3</div>
+            </div>
+            <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold shrink-0">6 Citations</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Awards -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-accent flex items-center justify-center">
+            <i class="bi bi-trophy text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Awards</h2>
+        </div>
+        <div class="space-y-4">
+          {awards.map((award, i) => (
+            <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border" style={`animation-delay: ${i * 0.05}s`}>
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="font-bold text-sm">{award.title}</div>
+                  <div class="text-sm text-gray-500 dark:text-gray-400">{award.org}</div>
+                  {award.detail && <div class="text-sm text-gray-400 dark:text-gray-500 mt-1">{award.detail}</div>}
+                </div>
+                <span class="text-xs text-primary dark:text-primary-light font-semibold shrink-0">{award.date}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Chess -->
+      <section class="mb-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+            <i class="bi bi-king text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Chess</h2>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          {chess.map((item, i) => (
+            <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border" style={`animation-delay: ${i * 0.05}s`}>
+              <div class="font-bold text-sm">{item.title}</div>
+              <div class="flex items-center gap-2 mt-2">
+                <span class="px-2.5 py-1 rounded-lg bg-accent/10 text-accent text-xs font-bold">{item.place}</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400">{item.date}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <!-- Soft Skills -->
       <section>
         <div class="flex items-center gap-3 mb-8">
@@ -222,16 +419,39 @@ const softSkills = [
           </div>
           <h2 class="text-2xl font-extrabold">Soft Skills</h2>
         </div>
-        <div class="grid md:grid-cols-3 gap-4">
-          {softSkills.map((skill, i) => (
-            <div class="reveal card-hover p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border text-center" style={`animation-delay: ${i * 0.1}s`}>
-              <div class="w-12 h-12 rounded-2xl bg-accent/10 dark:bg-accent/20 flex items-center justify-center mx-auto mb-3">
-                <i class={`bi ${skill.icon} text-xl text-accent dark:text-accent-light`}></i>
-              </div>
-              <h3 class="font-bold mb-2">{skill.title}</h3>
-              <p class="text-sm text-gray-500 dark:text-gray-400">{skill.detail}</p>
+        <div class="flex flex-wrap gap-3">
+          {['Conflict Resolution', 'Time Management', 'Process Optimization & Automation', 'Flexible & Adaptive', 'Listening'].map((skill, i) => (
+            <div class="reveal px-5 py-3 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border font-bold text-sm" style={`animation-delay: ${i * 0.05}s`}>
+              {skill}
             </div>
           ))}
+        </div>
+      </section>
+
+      <!-- Referees -->
+      <section class="mt-16">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+            <i class="bi bi-people text-white"></i>
+          </div>
+          <h2 class="text-2xl font-extrabold">Referees</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="reveal p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border">
+            <div class="font-bold text-sm">Dr. Dhanya Narayanan</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Assistant Professor, ASNSMM, Kochi</div>
+            <div class="text-sm text-primary dark:text-primary-light mt-1">dhanyan@aims.amrita.edu</div>
+          </div>
+          <div class="reveal p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border">
+            <div class="font-bold text-sm">Dr. Nafees Ahmad</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Professor, Immunobiology, UoA, Tucson</div>
+            <div class="text-sm text-primary dark:text-primary-light mt-1">nafees@arizona.edu</div>
+          </div>
+          <div class="reveal p-5 rounded-2xl bg-white dark:bg-dark-card border border-gray-100 dark:border-dark-border">
+            <div class="font-bold text-sm">Dr. I. Praveen Kumar</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">Assistant Professor, SIMATS, Chennai</div>
+            <div class="text-sm text-primary dark:text-primary-light mt-1">praveenkumarissac@gmail.com</div>
+          </div>
         </div>
       </section>
     </div>
