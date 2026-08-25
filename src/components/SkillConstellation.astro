@@ -9,15 +9,15 @@
         <span class="text-gradient">Skill</span> Constellation
       </h2>
       <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        Hover a node to see connected skills. Click to expand and view all skills in that domain.
+        Hover or tap a node to see connected skills. Tap again to expand all skills in that domain.
       </p>
     </div>
     
-    <div class="relative" style="height: 500px;">
-      <canvas id="constellation-canvas" class="w-full h-full" style="touch-action: none;"></canvas>
+    <div class="relative h-[440px] md:h-[500px]">
+      <canvas id="constellation-canvas" class="w-full h-full" style="touch-action: pan-y;"></canvas>
       <div id="node-icons" class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-      <div id="tooltip" class="constellation-tooltip fixed pointer-events-none opacity-0 transition-opacity duration-200 z-50"></div>
-      <div id="skill-panel" class="constellation-panel fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-md p-4 bg-white dark:bg-dark-card rounded-2xl shadow-2xl border border-gray-100 dark:border-dark-border transform transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50"></div>
+      <div id="tooltip" class="constellation-tooltip fixed pointer-events-none opacity-0 transition-opacity duration-200 z-[70]"></div>
+      <div id="skill-panel" class="constellation-panel fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-md p-4 bg-white dark:bg-dark-card rounded-2xl shadow-2xl border border-gray-100 dark:border-dark-border transform transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-[60] max-h-[60vh] overflow-y-auto"></div>
     </div>
     
     <div class="flex flex-wrap justify-center gap-2 mt-8" id="legend"></div>
@@ -183,17 +183,19 @@
     let width = 0, height = 0, animationId = null;
     let hoveredNode = null, selectedNode = null;
 
+    const isNarrow = () => width < 640;
+
     const nodes = [
-      { id: 'metagenomics', label: 'Metagenomics', icon: 'bi-virus', color: '#0d9488', x: 0.5, y: 0.15, skills: ['cfDNA Analysis', 'Pathogen ID', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker'] },
-      { id: 'bioinformatics', label: 'Bioinformatics', icon: 'bi-cpu', color: '#0d9488', x: 0.25, y: 0.35, skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux'] },
-      { id: 'molbio', label: 'Molecular Biology', icon: 'bi-droplet', color: '#f59e0b', x: 0.75, y: 0.35, skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'SDS PAGE', 'ELISA', 'TLC', 'ROS/Toxicity Assays'] },
-      { id: 'cellculture', label: 'Cell Culture', icon: 'bi-grid-fill', color: '#f59e0b', x: 0.9, y: 0.55, skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays'] },
-      { id: 'zebrafish', label: 'Zebrafish Model', icon: 'bi-water', color: '#f59e0b', x: 0.7, y: 0.8, skills: ['Developmental Toxicity', 'Neurobehavior', 'GPx/GST Assays', 'DCFH-DA Staining'] },
-      { id: 'characterization', label: 'Characterization', icon: 'bi-search', color: '#6366f1', x: 0.32, y: 0.82, skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR'] },
-      { id: 'genedelivery', label: 'Gene Delivery', icon: 'bi-capsule', color: '#ec4899', x: 0.5, y: 0.5, skills: ['Polyplex Systems', 'Core-Shell NPs', 'PBAE Synthesis'] },
-      { id: 'polymer', label: 'Polymer Chemistry', icon: 'bi-link-45deg', color: '#ec4899', x: 0.18, y: 0.52, skills: ['Linear Polymer Synthesis', 'Carothers Equation'] },
-      { id: 'industrial', label: 'Industrial Biotech', icon: 'bi-gear', color: '#06b6d4', x: 0.08, y: 0.78, skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II'] },
-      { id: 'data', label: 'Data Analysis', icon: 'bi-bar-chart', color: '#6366f1', x: 0.92, y: 0.18, skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau'] },
+      { id: 'metagenomics', label: 'Metagenomics', icon: 'bi-virus', color: '#0d9488', x: 0.5, y: 0.15, mx: 0.5, my: 0.1, skills: ['cfDNA Analysis', 'Pathogen ID', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker'] },
+      { id: 'bioinformatics', label: 'Bioinformatics', icon: 'bi-cpu', color: '#0d9488', x: 0.25, y: 0.35, mx: 0.24, my: 0.26, skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux'] },
+      { id: 'molbio', label: 'Molecular Biology', icon: 'bi-droplet', color: '#f59e0b', x: 0.75, y: 0.35, mx: 0.72, my: 0.42, skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'SDS PAGE', 'ELISA', 'TLC', 'ROS/Toxicity Assays'] },
+      { id: 'cellculture', label: 'Cell Culture', icon: 'bi-grid-fill', color: '#f59e0b', x: 0.9, y: 0.55, mx: 0.88, my: 0.62, skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays'] },
+      { id: 'zebrafish', label: 'Zebrafish Model', icon: 'bi-water', color: '#f59e0b', x: 0.7, y: 0.8, mx: 0.6, my: 0.84, skills: ['Developmental Toxicity', 'Neurobehavior', 'GPx/GST Assays', 'DCFH-DA Staining'] },
+      { id: 'characterization', label: 'Characterization', icon: 'bi-search', color: '#6366f1', x: 0.32, y: 0.82, mx: 0.3, my: 0.8, skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR'] },
+      { id: 'genedelivery', label: 'Gene Delivery', icon: 'bi-capsule', color: '#ec4899', x: 0.5, y: 0.5, mx: 0.44, my: 0.56, skills: ['Polyplex Systems', 'Core-Shell NPs', 'PBAE Synthesis'] },
+      { id: 'polymer', label: 'Polymer Chemistry', icon: 'bi-link-45deg', color: '#ec4899', x: 0.18, y: 0.52, mx: 0.16, my: 0.5, skills: ['Linear Polymer Synthesis', 'Carothers Equation'] },
+      { id: 'industrial', label: 'Industrial Biotech', icon: 'bi-gear', color: '#06b6d4', x: 0.08, y: 0.78, mx: 0.09, my: 0.68, skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II'] },
+      { id: 'data', label: 'Data Analysis', icon: 'bi-bar-chart', color: '#6366f1', x: 0.92, y: 0.18, mx: 0.76, my: 0.18, skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau'] },
     ];
 
     const edges = [
@@ -230,7 +232,9 @@
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    const getNodePos = n => ({ x: n.x * width, y: n.y * height });
+    const getNodePos = n => isNarrow()
+      ? { x: n.mx * width, y: n.my * height }
+      : { x: n.x * width, y: n.y * height };
     const isDark = () => document.documentElement.classList.contains('dark');
 
     function drawEdges() {
@@ -252,8 +256,9 @@
 
     function drawNode(node) {
       const pos = getNodePos(node);
+      const narrow = isNarrow();
       const active = hoveredNode === node.id || selectedNode === node.id;
-      const radius = active ? 32 : 26;
+      const radius = active ? (narrow ? 27 : 32) : (narrow ? 22 : 26);
 
       if (active) {
         ctx.beginPath();
@@ -279,12 +284,15 @@
         ctx.stroke();
       }
 
-      // Label below circle in theme-aware color (icon rendered via DOM overlay)
+      // Label below circle in theme-aware color (icon rendered via DOM overlay).
+      // Clamp within canvas so labels never clip at screen edges.
       ctx.fillStyle = active ? node.color : (isDark() ? '#cbd5e1' : '#334155');
-      ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
+      ctx.font = `600 ${narrow ? 11 : 12}px "Plus Jakarta Sans", sans-serif`;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'top';
-      ctx.fillText(node.label, pos.x, pos.y + radius + 6);
+      const labelWidth = ctx.measureText(node.label).width;
+      const labelX = Math.max(labelWidth / 2 + 2, Math.min(pos.x, width - labelWidth / 2 - 2));
+      ctx.fillText(node.label, labelX, pos.y + radius + 5);
     }
 
     function render() {
@@ -312,10 +320,17 @@
       animationId = requestAnimationFrame(animate);
     }
 
+    // Pause the render loop when the canvas is off-screen (mobile battery)
+    function setRunning(on) {
+      if (on && animationId === null) animationId = requestAnimationFrame(animate);
+      else if (!on && animationId !== null) { cancelAnimationFrame(animationId); animationId = null; }
+    }
+
     function getNodeAt(x, y) {
+      const R = isNarrow() ? 30 : 38;
       return nodes.find(n => {
         const p = getNodePos(n);
-        return (x - p.x) ** 2 + (y - p.y) ** 2 <= 38 * 38;
+        return (x - p.x) ** 2 + (y - p.y) ** 2 <= R * R;
       }) || null;
     }
 
@@ -325,12 +340,16 @@
           <span style="width:10px;height:10px;border-radius:50%;background:${node.color};display:inline-block;"></span>
           ${node.label} <span style="font-size:10px;color:#94a3b8;font-weight:400;">Â· ${categoryMap[node.id]}</span>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:5px;max-width:280px;">
+        <div style="display:flex;flex-wrap:wrap;gap:5px;max-width:min(280px, calc(100vw - 24px));">
           ${node.skills.map(s => `<span style="font-size:11px;padding:2px 8px;border-radius:9999px;background:#f1f5f9;color:#475569;">${s}</span>`).join('')}
         </div>`;
+      // Clamp horizontally so the tooltip never leaves the viewport
+      const tw = tooltip.offsetWidth || 240;
+      const half = tw / 2 + 8;
+      const clampedX = Math.min(Math.max(cx, half), window.innerWidth - half);
+      tooltip.style.left = clampedX + 'px';
+      tooltip.style.top = Math.max(cy, 60) + 'px';
       tooltip.style.opacity = '1';
-      tooltip.style.left = cx + 'px';
-      tooltip.style.top = cy + 'px';
     }
 
     function hideTooltip() { tooltip.style.opacity = '0'; }
@@ -390,7 +409,9 @@
       buildIconOverlay();
       window.addEventListener('resize', resize);
 
-      canvas.addEventListener('mousemove', e => {
+      // Hover tooltip: mouse pointers only (touch uses tap -> panel)
+      canvas.addEventListener('pointermove', e => {
+        if (e.pointerType !== 'mouse') return;
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left, y = e.clientY - rect.top;
         const node = getNodeAt(x, y);
@@ -405,7 +426,8 @@
         }
       });
 
-      canvas.addEventListener('click', e => {
+      // Tap / click selects a node (works for touch + mouse)
+      canvas.addEventListener('pointerdown', e => {
         const rect = canvas.getBoundingClientRect();
         const node = getNodeAt(e.clientX - rect.left, e.clientY - rect.top);
         if (node) {
@@ -415,11 +437,16 @@
         }
       });
 
-      canvas.addEventListener('mouseleave', () => {
+      canvas.addEventListener('pointerleave', () => {
         if (!selectedNode) { hoveredNode = null; hideTooltip(); }
       });
 
-      animate();
+      // Only render while visible
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => setRunning(entry.isIntersecting));
+      }, { threshold: 0 });
+      io.observe(canvas);
+      setRunning(true);
     }
 
     if (document.readyState === 'loading') {
