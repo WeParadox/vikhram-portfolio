@@ -44,9 +44,10 @@ const base = '/vikhram';
         <span class="tag-chip bg-green-500/10 dark:bg-green-500/20 text-green-500 dark:text-green-400 border border-green-500/20 dark:border-green-500/30 px-4 py-1.5 rounded-full text-sm font-medium hover:bg-green-500/20 dark:hover:bg-green-500/30 hover:scale-105 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300" style="animation-delay: 0.2s">Genomics</span>
       </div>
 
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 animate-fade-in" style="animation-delay: 0.2s">
-        From Nanoparticles to
-        <span class="text-gradient block mt-2">Pathogen Genomes</span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 animate-fade-in" style="animation-delay: 0.2s">
+        Decoding <span class="text-gradient">Genomes</span>,
+        <span class="block mt-1">Scaling <span class="text-gradient-accent">Nano</span> —</span>
+        <span class="block mt-1">Enhancing <span class="text-gradient">Immunobiology</span></span>
       </h1>
 
       <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in" style="animation-delay: 0.2s">
@@ -95,5 +96,12 @@ const base = '/vikhram';
   }
   .dark .tag-chip:hover {
     animation: tagPulse 2s infinite;
+  }
+  .text-gradient-accent {
+    background: linear-gradient(135deg, #f59e0b, #d97706, #fbbf24);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
   }
 </style>
