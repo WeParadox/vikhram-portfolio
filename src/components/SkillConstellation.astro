@@ -1,122 +1,6 @@
+﻿---
 ---
-const skillNodes = [
-  { 
-    id: 'metagenomics', 
-    label: 'Metagenomics', 
-    category: 'Computational', 
-    color: '#0d9488',
-    x: 0.5, y: 0.15,
-    skills: ['cfDNA Analysis', 'Pathogen ID', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker']
-  },
-  { 
-    id: 'bioinformatics', 
-    label: 'Bioinformatics', 
-    category: 'Computational', 
-    color: '#0d9488',
-    x: 0.25, y: 0.35,
-    skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux']
-  },
-  { 
-    id: 'molbio', 
-    label: 'Molecular Biology', 
-    category: 'Wet Lab', 
-    color: '#f59e0b',
-    x: 0.75, y: 0.35,
-    skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'SDS PAGE', 'ELISA', 'TLC', 'ROS/Toxicity Assays']
-  },
-  { 
-    id: 'cellculture', 
-    label: 'Cell Culture', 
-    category: 'Wet Lab', 
-    color: '#f59e0b',
-    x: 0.9, y: 0.55,
-    skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays']
-  },
-  { 
-    id: 'zebrafish', 
-    label: 'Zebrafish Model', 
-    category: 'Wet Lab', 
-    color: '#f59e0b',
-    x: 0.7, y: 0.8,
-    skills: ['Developmental Toxicity', 'Neurobehavior', 'GPx/GST Assays', 'DCFH-DA Staining']
-  },
-  { 
-    id: 'characterization', 
-    label: 'Characterization', 
-    category: 'Analysis', 
-    color: '#6366f1',
-    x: 0.3, y: 0.8,
-    skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR']
-  },
-  { 
-    id: 'genedelivery', 
-    label: 'Gene Delivery', 
-    category: 'Engineering', 
-    color: '#ec4899',
-    x: 0.5, y: 0.5,
-    skills: ['Polyplex Systems', 'Core-Shell NPs', 'PBAE Synthesis']
-  },
-  { 
-    id: 'polymer', 
-    label: 'Polymer Chemistry', 
-    category: 'Engineering', 
-    color: '#ec4899',
-    x: 0.15, y: 0.55,
-    skills: ['Linear Polymer Synthesis', 'Carothers Equation']
-  },
-  { 
-    id: 'industrial', 
-    label: 'Industrial Biotech', 
-    category: 'Engineering', 
-    color: '#06b6d4',
-    x: 0.1, y: 0.3,
-    skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II']
-  },
-  { 
-    id: 'data', 
-    label: 'Data Analysis', 
-    category: 'Analysis', 
-    color: '#6366f1',
-    x: 0.9, y: 0.2,
-    skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau']
-  },
-];
 
-const edges = [
-  ['metagenomics', 'bioinformatics'],
-  ['bioinformatics', 'molbio'],
-  ['molbio', 'cellculture'],
-  ['cellculture', 'zebrafish'],
-  ['molbio', 'characterization'],
-  ['molbio', 'genedelivery'],
-  ['genedelivery', 'polymer'],
-  ['polymer', 'industrial'],
-  ['bioinformatics', 'data'],
-  ['metagenomics', 'genedelivery'],
-  ['cellculture', 'genedelivery'],
-];
-
-const categoryColors = {
-  'Computational': '#0d9488',
-  'Wet Lab': '#f59e0b',
-  'Engineering': '#ec4899',
-  'Analysis': '#6366f1',
-  'Systems': '#06b6d4',
-};
-
-const categoryMap = {
-  'metagenomics': 'Computational',
-  'bioinformatics': 'Computational',
-  'molbio': 'Wet Lab',
-  'cellculture': 'Wet Lab',
-  'zebrafish': 'Wet Lab',
-  'characterization': 'Analysis',
-  'genedelivery': 'Engineering',
-  'polymer': 'Engineering',
-  'industrial': 'Systems',
-  'data': 'Analysis',
-};
----
 
 <div class="skill-constellation-section py-20 bg-gray-50/50 dark:bg-dark-card/30">
   <div class="max-w-6xl mx-auto px-6">
@@ -131,6 +15,7 @@ const categoryMap = {
     
     <div class="relative" style="height: 500px;">
       <canvas id="constellation-canvas" class="w-full h-full" style="touch-action: none;"></canvas>
+      <div id="node-icons" class="absolute inset-0 pointer-events-none" aria-hidden="true"></div>
       <div id="tooltip" class="constellation-tooltip fixed pointer-events-none opacity-0 transition-opacity duration-200 z-50"></div>
       <div id="skill-panel" class="constellation-panel fixed bottom-4 left-1/2 -translate-x-1/2 w-full max-w-md p-4 bg-white dark:bg-dark-card rounded-2xl shadow-2xl border border-gray-100 dark:border-dark-border transform transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-50"></div>
     </div>
@@ -140,6 +25,24 @@ const categoryMap = {
 </div>
 
 <style>
+  .node-icon {
+    position: absolute;
+    transform: translate(-50%, -50%) scale(1);
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.25s ease;
+    will-change: transform;
+    z-index: 5;
+  }
+  .node-icon i {
+    display: block;
+  }
+  .node-icon.node-icon-active {
+    transform: translate(-50%, -50%) scale(1.22);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.55);
+  }
+
   .constellation-tooltip {
     background: white;
     border: 1px solid #e5e7eb;
@@ -277,30 +180,32 @@ const categoryMap = {
     let hoveredNode = null, selectedNode = null;
 
     const nodes = [
-      { id: 'metagenomics', label: 'Metagenomics', color: '#0d9488', x: 0.5, y: 0.15, skills: ['cfDNA Analysis', 'Pathogen ID', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker'] },
-      { id: 'bioinformatics', label: 'Bioinformatics', color: '#0d9488', x: 0.25, y: 0.35, skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux'] },
-      { id: 'molbio', label: 'Molecular Biology', color: '#f59e0b', x: 0.75, y: 0.35, skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'SDS PAGE', 'ELISA', 'TLC', 'ROS/Toxicity Assays'] },
-      { id: 'cellculture', label: 'Cell Culture', color: '#f59e0b', x: 0.9, y: 0.55, skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays'] },
-      { id: 'zebrafish', label: 'Zebrafish Model', color: '#f59e0b', x: 0.7, y: 0.8, skills: ['Developmental Toxicity', 'Neurobehavior', 'GPx/GST Assays', 'DCFH-DA Staining'] },
-      { id: 'characterization', label: 'Characterization', color: '#6366f1', x: 0.3, y: 0.8, skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR'] },
-      { id: 'genedelivery', label: 'Gene Delivery', color: '#ec4899', x: 0.5, y: 0.5, skills: ['Polyplex Systems', 'Core-Shell NPs', 'PBAE Synthesis'] },
-      { id: 'polymer', label: 'Polymer Chemistry', color: '#ec4899', x: 0.15, y: 0.55, skills: ['Linear Polymer Synthesis', 'Carothers Equation'] },
-      { id: 'industrial', label: 'Industrial Biotech', color: '#06b6d4', x: 0.1, y: 0.3, skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II'] },
-      { id: 'data', label: 'Data Analysis', color: '#6366f1', x: 0.9, y: 0.2, skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau'] },
+      { id: 'metagenomics', label: 'Metagenomics', icon: 'bi-virus', color: '#0d9488', x: 0.5, y: 0.15, skills: ['cfDNA Analysis', 'Pathogen ID', 'AMR Profiling', 'KMA', 'ResFinder', 'CARD', 'Bowtie2', 'fastp', 'Docker'] },
+      { id: 'bioinformatics', label: 'Bioinformatics', icon: 'bi-cpu', color: '#0d9488', x: 0.25, y: 0.35, skills: ['Molecular Docking', 'PyMOL', 'Discovery Studio', 'Binding Site Prediction', 'BLAST', 'MD Simulation', 'Linux'] },
+      { id: 'molbio', label: 'Molecular Biology', icon: 'bi-droplet', color: '#f59e0b', x: 0.75, y: 0.35, skills: ['DNA/RNA Extraction', 'Plasmid Isolation', 'SDS PAGE', 'ELISA', 'TLC', 'ROS/Toxicity Assays'] },
+      { id: 'cellculture', label: 'Cell Culture', icon: 'bi-grid-fill', color: '#f59e0b', x: 0.9, y: 0.55, skills: ['L929', 'RAW 264.7', 'HEK 293', 'PBMC Isolation', 'Transfection', 'In vitro Assays'] },
+      { id: 'zebrafish', label: 'Zebrafish Model', icon: 'bi-water', color: '#f59e0b', x: 0.7, y: 0.8, skills: ['Developmental Toxicity', 'Neurobehavior', 'GPx/GST Assays', 'DCFH-DA Staining'] },
+      { id: 'characterization', label: 'Characterization', icon: 'bi-search', color: '#6366f1', x: 0.32, y: 0.82, skills: ['SEM', 'DLS/ZETA', 'XRD', 'H-NMR', 'FTIR'] },
+      { id: 'genedelivery', label: 'Gene Delivery', icon: 'bi-capsule', color: '#ec4899', x: 0.5, y: 0.5, skills: ['Polyplex Systems', 'Core-Shell NPs', 'PBAE Synthesis'] },
+      { id: 'polymer', label: 'Polymer Chemistry', icon: 'bi-link-45deg', color: '#ec4899', x: 0.18, y: 0.52, skills: ['Linear Polymer Synthesis', 'Carothers Equation'] },
+      { id: 'industrial', label: 'Industrial Biotech', icon: 'bi-gear', color: '#06b6d4', x: 0.08, y: 0.78, skills: ['Biogas Mass Balance', 'PFD', 'AFT Arrow', 'CAESAR II'] },
+      { id: 'data', label: 'Data Analysis', icon: 'bi-bar-chart', color: '#6366f1', x: 0.92, y: 0.18, skills: ['Origin Lab', 'SPSS', 'GraphPad PRISM', 'Tableau'] },
     ];
 
     const edges = [
       ['metagenomics', 'bioinformatics'],
-      ['bioinformatics', 'molbio'],
+      ['bioinformatics', 'data'],
+      ['data', 'molbio'],
+      ['metagenomics', 'molbio'],
       ['molbio', 'cellculture'],
       ['cellculture', 'zebrafish'],
-      ['molbio', 'characterization'],
       ['molbio', 'genedelivery'],
       ['genedelivery', 'polymer'],
+      ['genedelivery', 'characterization'],
+      ['polymer', 'characterization'],
       ['polymer', 'industrial'],
-      ['bioinformatics', 'data'],
-      ['metagenomics', 'genedelivery'],
-      ['cellculture', 'genedelivery'],
+      ['characterization', 'industrial'],
+      ['characterization', 'zebrafish'],
     ];
 
     const categoryMap = {
@@ -368,16 +273,10 @@ const categoryMap = {
         ctx.stroke();
       }
 
-      // First letter centered in circle
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '700 16px "Plus Jakarta Sans", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(node.label.charAt(0), pos.x, pos.y);
-
-      // Label below circle in theme-aware color
+      // Label below circle in theme-aware color (icon rendered via DOM overlay)
       ctx.fillStyle = active ? node.color : (isDark() ? '#cbd5e1' : '#334155');
       ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
       ctx.textBaseline = 'top';
       ctx.fillText(node.label, pos.x, pos.y + radius + 6);
     }
@@ -388,8 +287,22 @@ const categoryMap = {
       nodes.forEach(drawNode);
     }
 
+    // Sync DOM icon overlays to node positions + active state
+    function syncIcons() {
+      nodes.forEach(node => {
+        const el = node.iconEl;
+        if (!el) return;
+        const pos = getNodePos(node);
+        el.style.left = pos.x + 'px';
+        el.style.top = pos.y + 'px';
+        const active = hoveredNode === node.id || selectedNode === node.id;
+        el.classList.toggle('node-icon-active', active);
+      });
+    }
+
     function animate() {
       render();
+      syncIcons();
       animationId = requestAnimationFrame(animate);
     }
 
@@ -404,7 +317,7 @@ const categoryMap = {
       tooltip.innerHTML = `
         <div class="constellation-tooltip-title" style="color:${node.color};">
           <span style="width:10px;height:10px;border-radius:50%;background:${node.color};display:inline-block;"></span>
-          ${node.label} <span style="font-size:10px;color:#94a3b8;font-weight:400;">· ${categoryMap[node.id]}</span>
+          ${node.label} <span style="font-size:10px;color:#94a3b8;font-weight:400;">Â· ${categoryMap[node.id]}</span>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:5px;max-width:280px;">
           ${node.skills.map(s => `<span style="font-size:11px;padding:2px 8px;border-radius:9999px;background:#f1f5f9;color:#475569;">${s}</span>`).join('')}
@@ -430,7 +343,7 @@ const categoryMap = {
           <div style="font-weight:700;font-size:15px;color:${node.color};display:flex;align-items:center;gap:8px;">
             <span style="width:12px;height:12px;border-radius:50%;background:${node.color};display:inline-block;"></span>
             ${node.label}
-            <span style="font-size:11px;color:#94a3b8;font-weight:400;">${categoryMap[node.id]} · ${node.skills.length} skills</span>
+            <span style="font-size:11px;color:#94a3b8;font-weight:400;">${categoryMap[node.id]} Â· ${node.skills.length} skills</span>
           </div>
           <button id="panel-close-btn" style="background:none;border:none;color:#94a3b8;font-size:22px;cursor:pointer;line-height:1;">&times;</button>
         </div>
@@ -451,9 +364,24 @@ const categoryMap = {
         </div>`).join('');
     }
 
+    function buildIconOverlay() {
+      const overlay = document.getElementById('node-icons');
+      if (!overlay) return;
+      overlay.innerHTML = '';
+      nodes.forEach(node => {
+        const el = document.createElement('div');
+        el.className = 'node-icon';
+        el.innerHTML = `<i class="bi ${node.icon}"></i>`;
+        node.iconEl = el;
+        overlay.appendChild(el);
+      });
+      syncIcons();
+    }
+
     function init() {
       resize();
       renderLegend();
+      buildIconOverlay();
       window.addEventListener('resize', resize);
 
       canvas.addEventListener('mousemove', e => {
