@@ -21,13 +21,15 @@ const experiences = [
   },
   {
     period: 'Feb 2026 - Present',
-    role: 'Volunteer',
+    role: 'Science Communication Volunteer',
     org: 'NextGen Biology Newsletter',
     location: 'Visakhapatnam · Remote',
     bullets: [
-      'Content editing, proofreading, and editorial management for biology-focused newsletter',
-      'Curated research summaries across immunology, nanotechnology, and clinical genomics',
-      'Collaborated with editorial team on content strategy and audience engagement'
+      'Design skill enrichment using CANVA, Blog designing',
+      'Community engagement',
+      'Guest Reviewed two editions',
+      '<a href="https://www.linkedin.com/pulse/rhythm-vasculature-how-mechano-transduction-decodes-language-p-s-v-v-ttpjc/" target="_blank" rel="noopener" class="text-primary dark:text-primary-light hover:underline">Rhythm of Vasculature: How Mechano-transduction Decodes Language</a>',
+      '<a href="https://www.linkedin.com/pulse/microbial-command-centre-deciphering-gut-glial-axis-brain-p-s-v-v-ntxec/" target="_blank" rel="noopener" class="text-primary dark:text-primary-light hover:underline">Microbial Command Centre: Deciphering Gut-Glial Axis in Brain</a>'
     ],
   },
   {
@@ -80,7 +82,6 @@ const education = [
     school: 'University of Arizona, College of Medicine',
     location: 'Tucson, USA',
     gpa: '4/4',
-    thesis: 'Immunobiology of Host-Pathogen Interactions',
     courses: ['Advanced Immunology', 'Translational Immunology', 'Host-Pathogen Interactions', 'Cancer Immunotherapy'],
     bullets: [
       'Focused on immune system function, host-pathogen interactions, translational immunology',
@@ -439,7 +440,7 @@ const chess = [
                   DOI: 10.1007/s12668-024-01561-3
                 </a>
                 <button 
-                  onclick="navigator.clipboard.writeText('10.1007/s12668-024-01561-3'); this.innerHTML='<i class=\"bi bi-check\"></i> Copied!'; setTimeout(() => this.innerHTML='<i class=\"bi bi-clipboard\"></i> Copy DOI', 2000)"
+                  data-doi="10.1007/s12668-024-01561-3"
                   class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-bold hover:bg-primary/20 transition-colors cursor-pointer"
                   title="Copy DOI to clipboard"
                 >
@@ -451,6 +452,17 @@ const chess = [
           </div>
         </div>
       </section>
+
+      <script is:inline>
+        document.querySelectorAll('[data-doi]').forEach(btn => {
+          btn.addEventListener('click', () => {
+            navigator.clipboard.writeText(btn.dataset.doi);
+            const original = btn.innerHTML;
+            btn.innerHTML = '<i class="bi bi-check"></i> Copied!';
+            setTimeout(() => btn.innerHTML = original, 2000);
+          });
+        });
+      </script>
 
       <!-- Awards -->
       <section class="mb-16" id="awards">
@@ -480,7 +492,7 @@ const chess = [
       <section class="mb-16">
         <div class="flex items-center gap-3 mb-8">
           <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-            <i class="bi bi-king text-white"></i>
+            <i class="bi bi-chess-knight text-white"></i>
           </div>
           <h2 class="text-2xl font-extrabold">Chess</h2>
         </div>
