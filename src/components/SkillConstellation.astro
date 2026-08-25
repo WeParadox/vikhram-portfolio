@@ -368,20 +368,18 @@ const categoryMap = {
         ctx.stroke();
       }
 
+      // First letter centered in circle
       ctx.fillStyle = '#ffffff';
-      ctx.font = '600 11px "Plus Jakarta Sans", sans-serif';
+      ctx.font = '700 16px "Plus Jakarta Sans", sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
+      ctx.fillText(node.label.charAt(0), pos.x, pos.y);
 
-      // Wrap long labels
-      const words = node.label.split(' ');
-      if (words.length > 1 && node.label.length > 12) {
-        const mid = Math.ceil(words.length / 2);
-        ctx.fillText(words.slice(0, mid).join(' '), pos.x, pos.y - 7);
-        ctx.fillText(words.slice(mid).join(' '), pos.x, pos.y + 7);
-      } else {
-        ctx.fillText(node.label, pos.x, pos.y);
-      }
+      // Label below circle in theme-aware color
+      ctx.fillStyle = active ? node.color : (isDark() ? '#cbd5e1' : '#334155');
+      ctx.font = '600 12px "Plus Jakarta Sans", sans-serif';
+      ctx.textBaseline = 'top';
+      ctx.fillText(node.label, pos.x, pos.y + radius + 6);
     }
 
     function render() {
